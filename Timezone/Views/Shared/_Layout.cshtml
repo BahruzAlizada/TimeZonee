@@ -49,6 +49,20 @@
     <main>
         @RenderBody()
     </main>
+
+
+    <!--? Shop Method Start-->
+    <div class="shop-method-area" style="padding-bottom:40px;">
+        <div class="container">
+            <div class="method-wrapper">
+                <div class="row d-flex justify-content-between">
+                  @await Component.InvokeAsync("ShopMethod")
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shop Method End-->
+
     <!-- subscribe part here -->
     <section class="subscribe_part section_padding">
         <div class="container">
@@ -68,15 +82,17 @@
         </div>
     </section>
     <!-- subscribe part end -->
-    <footer>
-        <!-- Footer Start-->
+
+    <!-- Footer Start-->
+    <footer> 
         <div class="footer-area footer-padding">
             <div class="container">
                @await Component.InvokeAsync("Footer")
             </div>
         </div>
-        <!-- Footer End-->
     </footer>
+     <!-- Footer End-->
+
     <!--? Search model Begin -->
     <div class="search-model-box">
         <div class="h-100 d-flex align-items-center justify-content-center">

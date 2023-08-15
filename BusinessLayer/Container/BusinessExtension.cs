@@ -35,6 +35,9 @@ namespace BusinessLayer.Container
 
             services.AddScoped<INewsletterService, NewsletterManager>();
             services.AddScoped<INewsletterDal, EFNewsletterDal>();
+
+            services.AddScoped<IShopMethodService, ShopMethodManager>();
+            services.AddScoped<IShopMethodDal, EFShopMethodDal>();
         }
 
     }
