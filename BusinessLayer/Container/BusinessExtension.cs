@@ -23,6 +23,18 @@ namespace BusinessLayer.Container
 
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<IBlogDal,EFBlogDal>();
+
+            services.AddScoped<ISliderService, SliderManager>();
+            services.AddScoped<ISliderDal, EFSliderDal>();
+
+            services.AddScoped<ISocialMediaService, SocialMediaManager>();
+            services.AddScoped<ISocialMediaDal, EFSocialMediaDal>();
+
+            services.AddScoped<IGaleryService, GaleryManager>();
+            services.AddScoped<IGaleryDal, EFGaleryDal>();
+
+            services.AddScoped<INewsletterService, NewsletterManager>();
+            services.AddScoped<INewsletterDal, EFNewsletterDal>();
         }
 
     }

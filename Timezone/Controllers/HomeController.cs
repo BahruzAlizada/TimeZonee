@@ -1,32 +1,68 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Helper;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using Timezone.Models;
 
 namespace Timezone.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly INewsletterService newsletterService;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,INewsletterService newsletterService)
         {
             _logger = logger;
+            this.newsletterService = newsletterService;
         }
 
+        #region Index
         public IActionResult Index()
         {
             return View();
         }
+        #endregion
 
-        public IActionResult Privacy()
+        #region Subscripe
+        public async Task<IActionResult> Subscripe(string email)
         {
-            return View();
-        }
+            if (email == null)
+                return Content("Email boş ola bilməz");
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+
+            if (!match.Success)
+                return Content("Email adresini düzgün qeyd edin");
+            else
+            {
+                Newsteller newsteller = new Newsteller { Email = email };
+
+                bool isExist = newsletterService.GetAll().Any(x=>x.Email==email);
+                if (isExist)
+                    return Content("Siz artıq bizə abunə olmusunuz");
+
+                newsletterService.Add(newsteller);
+
+                List<Newsteller> newstellers = newsletterService.GetAll();
+                string message = "Yeni blog və productlarla tanış olmaq üçün səhifəmizə daxil ola bilərsiniz";
+                string title = "Salam Əziz İzləyicimiz";
+                foreach (Newsteller sub in newstellers)
+                {
+                    await SendMail.SendMailAsync(title, message, sub.Email);
+                }
+            }
+            return Content("Ok");
+        }
+        #endregion
+
+
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }

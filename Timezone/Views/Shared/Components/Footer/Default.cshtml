@@ -1,4 +1,6 @@
-﻿<div class="row d-flex justify-content-between">
+﻿@model SocialMedia
+
+<div class="row d-flex justify-content-between">
     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
         <div class="single-footer-caption mb-50">
             <div class="single-footer-caption mb-30">
@@ -10,10 +12,10 @@
                     <div class="footer-pera">
                         <p>Asorem ipsum adipolor sdit amet, consectetur adipisicing elitcf sed do eiusmod tem.</p>
                         <div class="footer-social">
-                            <a href="~/#"><i class="fab fa-twitter"></i></a>
-                            <a href="~/https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                            <a href="~/#"><i class="fab fa-behance"></i></a>
-                            <a href="~/#"><i class="fas fa-globe"></i></a>
+                            <a href="@Model.TviterLink"><i class="fab fa-twitter"></i></a>
+@*                            <a href="@Model."><i class="fab fa-facebook-f"></i></a>
+*@                            <a href="@Model.InstagramLink"><i class="fab fa-behance"></i></a>
+                            <a href="@Model.YoutubeLink"><i class="fas fa-globe"></i></a>
                         </div>
                     </div>
                     <div class="footer-copy-right f-right">
