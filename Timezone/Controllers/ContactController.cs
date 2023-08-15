@@ -19,6 +19,9 @@ namespace Timezone.Controllers
         #region Index
         public IActionResult Index()
         {
+            ContactInfo info = contactInfoService.Get();
+            ViewBag.EmailInfo = info.Email;
+            ViewBag.PhoneInfo = info.Phone;
             return View();
         }
 
@@ -27,6 +30,10 @@ namespace Timezone.Controllers
 
         public IActionResult Index(Contact contact)
         {
+            ContactInfo info = contactInfoService.Get();
+            ViewBag.EmailInfo = info.Email;
+            ViewBag.PhoneInfo = info.Phone;
+
             var validator = new ContactValidator();
             var result = validator.Validate(contact);
             if (!result.IsValid)
@@ -41,7 +48,5 @@ namespace Timezone.Controllers
             return RedirectToAction("Index");
         }
         #endregion
-
-      
     }
 }

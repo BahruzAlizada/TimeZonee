@@ -20,6 +20,9 @@ namespace BusinessLayer.Container
 
             services.AddScoped<IContactInfoService,ContactInfoManager>();
             services.AddScoped<IContactInfoDal, EFContactInfoDal>();
+
+            services.AddScoped<IBlogService, BlogManager>();
+            services.AddScoped<IBlogDal,EFBlogDal>();
         }
 
     }

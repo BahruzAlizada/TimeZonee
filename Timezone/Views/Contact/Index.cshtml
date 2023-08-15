@@ -19,34 +19,33 @@
         <section class="contact-section">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
-                        <h2 class="contact-title">Get in Touch</h2>
+                    <div class="col-12">    
                     </div>
                     <div class="col-lg-8">
                         <form class="form-contact contact_form"  method="post">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea asp-for="Message" class="form-control w-100" cols="30" rows="9" onfocus="this.placeholder = ''" placeholder=" Enter Message"></textarea>
+                                        <textarea asp-for="Message" class="form-control w-100" cols="30" rows="9" onfocus="this.placeholder = ''" placeholder=" Mesajınızı daxil edin"></textarea>
                                         <span class="text-danger" asp-validation-for="Message"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input class="form-control valid"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name">
-                                        <span class="text-danger" asp-validation-for="FullName"></span>
+                                <input asp-for="FullName" class="form-control valid" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adınız və Soyadınız '" placeholder="Adınız və Soyadınız">
+                                <span class="text-danger" asp-validation-for="FullName"></span>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input class="form-control valid" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
-                                        <span class="text-danger" asp-validation-for="Email"></span>
+                                <input asp-for="Email" class="form-control valid" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Elektron poçtunuz '" placeholder="Elektron poçtunuz">
+                                <span class="text-danger" asp-validation-for="Email"></span>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Subject">
-                                        <span class="text-danger" asp-validation-for="Subject"></span>
+                                <input asp-for="Subject" class="form-control" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mətnin başlığı'" placeholder=" Mətnin başlığı">
+                                <span class="text-danger" asp-validation-for="Subject"></span>
                                     </div>
                                 </div>
                             </div>
@@ -57,25 +56,25 @@
                     </div>
 
                     <div class="col-lg-3 offset-lg-1">
-                        <div class="media contact-info">
+                        @*<div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-home"></i></span>
                             <div class="media-body">
                                 <h3>Buttonwood, California.</h3>
                                 <p>Rosemead, CA 91770</p>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                             <div class="media-body">
-                                <h3>+1 253 565 2365</h3>
-                                <p>Mon to Fri 9am to 6pm</p>
+                                <h3>@ViewBag.PhoneInfo</h3>
+                                <p>Həftə içi 9-5</p>
                             </div>
                         </div>
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-email"></i></span>
                             <div class="media-body">
-                                <h3>support@colorlib.com</h3>
-                                <p>Send us your query anytime!</p>
+                                <h3>@ViewBag.EmailInfo</h3>
+                                <p>Ən qısa zamanda geri dönüş edəcəyik!</p>
                             </div>
                         </div>
                     </div>
