@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
         void Add(Contact contact);
         List<Contact> GetAll();
         Contact GetById(int id);
+        void Delete(int id);
     }
 }

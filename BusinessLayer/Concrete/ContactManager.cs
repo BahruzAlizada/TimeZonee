@@ -18,6 +18,12 @@ namespace BusinessLayer.Concrete
            contactDal.Add(contact);
         }
 
+        public void Delete(int id)
+        {
+            var contact = contactDal.Get(x => x.Id == id);
+            contactDal.Delete(contact);
+        }
+
         public List<Contact> GetAll()
         {
             return contactDal.GetAll();

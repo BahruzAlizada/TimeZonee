@@ -1,0 +1,45 @@
+﻿@model List<Contact>
+<hr class="my-5" />
+
+<!-- Bordered Table -->
+<div class="card">
+    <div class="card-header" style="display:flex;justify-content:space-between">
+        <h2>
+            Əlaqə
+        </h2>
+        
+    </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Ad və Soyad</th>
+                         <th>Email</th>
+                        <th>Mətnin başlığı</th>
+                        <th style="text-align:right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Contact item in Model)
+                    {
+                        <tr>
+                            <td>@item.FullName</td>
+                            <td>@item.Email</td>
+                            <td>@item.Subject</td>
+                            <td>
+                                <div style="display:flex;justify-content:flex-end">
+                                    <a class="btn btn-warning  text-white" style="margin-right:10px"><i class="fa-solid fa-eye"></i></a>
+                                    <a class="btn btn-danger text-white" style="margin-right:10px"><i class="fa-solid fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--/ Bordered Table -->
+
+<hr class="my-5" />
