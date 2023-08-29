@@ -13,6 +13,11 @@ namespace BusinessLayer.Concrete
             this.categoryDal = categoryDal;
         }
 
+        public void Activity(int id)
+        {
+            categoryDal.Activity(id);
+        }
+
         public void Add(Category category)
         {
             categoryDal.Add(category);

@@ -7,5 +7,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface ICategoryDal : IRepositoryBase<Category>
     {
+        void Activity(int id);
     }
 }

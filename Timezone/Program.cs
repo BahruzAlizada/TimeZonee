@@ -3,11 +3,11 @@ using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using System;
-using System.Drawing.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<Context>();
 builder.Services.AddControllersWithViews();
 builder.Services.ContainerDependencies();
 

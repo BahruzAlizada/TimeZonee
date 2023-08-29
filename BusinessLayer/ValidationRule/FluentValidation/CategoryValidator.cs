@@ -4,7 +4,7 @@ using System;
 
 namespace BusinessLayer.ValidationRule.FluentValidation
 {
-    internal class CategoryValidator : AbstractValidator<Category>
+    public class CategoryValidator : AbstractValidator<Category>
     {
         public CategoryValidator()
         {

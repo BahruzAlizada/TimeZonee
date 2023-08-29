@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
         Category GetById(int id);
         void Add(Category category);
         void Update(Category category);
+        void Activity(int id);
     }
 }

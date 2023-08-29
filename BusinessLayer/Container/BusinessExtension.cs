@@ -42,6 +42,9 @@ namespace BusinessLayer.Container
 
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EFCategoryDal>();
+
+            services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IProductDal, EFProductDal>();
         }
 
     }
