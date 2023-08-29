@@ -1,0 +1,43 @@
+﻿@model About
+<hr class="my-5" />
+
+<!-- Bordered Table -->
+<div class="card">
+    <div class="card-header" style="display:flex;justify-content:space-between">
+        <h2>
+            Haqqında
+        </h2>
+        
+    </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Misyon</th>
+                         <th>Vizion</th>
+                        <th style="text-align:right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td>@Model.Mision.Substring(0,10)</td>
+                            <td>@Model.Vision.Substring(0,10)</td>
+                            <td>
+                                <div style="display:flex;justify-content:flex-end">
+                                    <a asp-asp-area="default" asp-controller="About" asp-action="Index" class="btn btn-warning  text-white" style="margin-right:10px"><i class="fa-solid fa-eye"></i></a>
+                                    <a asp-action="Update" class="btn btn-danger text-white" style="margin-right:10px">Yenilə</a>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--/ Bordered Table -->
+
+<hr class="my-5" />
+

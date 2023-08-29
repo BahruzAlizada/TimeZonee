@@ -25,16 +25,16 @@ namespace Timezone.Areas.Admin.Controllers
         public IActionResult Detail(int id)
         {
             var contact = contactService.GetById(id);
-            return View();
+            return View(contact);
         }
         #endregion
 
-        //#region Delete
+        #region Delete
         //public IActionResult Delete(int id)
         //{
         //    Contact contact = contactService.Delete(id);
         //    return View();
         //}
-        //#endregion
+        #endregion
     }
 }

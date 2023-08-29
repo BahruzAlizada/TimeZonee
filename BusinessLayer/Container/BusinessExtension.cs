@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -38,6 +39,9 @@ namespace BusinessLayer.Container
 
             services.AddScoped<IShopMethodService, ShopMethodManager>();
             services.AddScoped<IShopMethodDal, EFShopMethodDal>();
+
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICategoryDal, EFCategoryDal>();
         }
 
     }

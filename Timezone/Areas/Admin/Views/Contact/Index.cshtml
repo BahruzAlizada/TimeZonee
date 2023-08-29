@@ -29,8 +29,8 @@
                             <td>@item.Subject</td>
                             <td>
                                 <div style="display:flex;justify-content:flex-end">
-                                    <a class="btn btn-warning  text-white" style="margin-right:10px"><i class="fa-solid fa-eye"></i></a>
-                                    <a class="btn btn-danger text-white" style="margin-right:10px"><i class="fa-solid fa-trash"></i></a>
+                                    <a asp-route-id="@item.Id" asp-action="Detail" class="btn btn-warning  text-white" style="margin-right:10px">Daha Ətraflı</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger text-white" style="margin-right:10px">Sil</a>
                                 </div>
                             </td>
                         </tr>
