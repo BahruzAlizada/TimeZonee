@@ -13,6 +13,11 @@ namespace BusinessLayer.Concrete
             this.productDal = productDal;
         }
 
+        public void Activity(int id)
+        {
+            productDal.Activity(id);
+        }
+
         public void Add(Product product)
         {
             productDal.Add(product);
@@ -26,6 +31,16 @@ namespace BusinessLayer.Concrete
         public Product GetById(int id)
         {
             return productDal.Get(x => x.Id == id);
+        }
+
+        public Product GetProduct(int id)
+        {
+            return productDal.GetProduct(id);
+        }
+
+        public List<Product> GetProducts()
+        {
+            return productDal.GetProducts();
         }
 
         public void Update(Product product)

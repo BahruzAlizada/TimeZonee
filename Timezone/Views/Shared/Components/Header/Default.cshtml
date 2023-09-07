@@ -9,7 +9,7 @@
             <nav>
                 <ul id="navigation">
                     <li><a asp-controller="Home" asp-action="Index">Ana Səhifə</a></li>
-                    <li><a asp-controller="Product" asp-action="Idex">Məhsullar</a></li>
+                    <li><a asp-controller="Product" asp-action="Index">Məhsullar</a></li>
                     <li><a asp-controller="About" asp-action="Index">Haqqımızda</a></li>
                     <li><a asp-controller="Blog" asp-action="Index">Bloqlar</a></li>
                     <li><a asp-controller="Contact" asp-action="Index">Əlaqə</a></li>
@@ -24,7 +24,14 @@
                         <span class="flaticon-search"></span>
                     </div>
                 </li>
-                <li> <a asp-controller="Account" asp-action="Login"><span class="flaticon-user"></span></a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><p>@User.Identity.Name</p></li>
+                }
+                else
+                {
+                    <li> <a asp-controller="Account" asp-action="Login"><span class="flaticon-user"></span></a></li>
+                }
                 <li><a href="~/cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
             </ul>
         </div>

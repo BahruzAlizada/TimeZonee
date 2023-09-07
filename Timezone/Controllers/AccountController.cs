@@ -19,10 +19,45 @@ namespace Timezone.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
+
+        #region Login
         public IActionResult Login()
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> Login(LoginVM login)
+        {
+            AppUser user = await _userManager.FindByEmailAsync(login.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("","Email or Password is wrong");
+                return View();
+            }
+            if (user.IsDeactive)
+            {
+                ModelState.AddModelError("", "Your Account is blocked");
+                return View();
+            }
+            Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.PasswordSignInAsync(user, login.Password,
+                login.IsRemember, true);
+            if (!signInResult.Succeeded)
+            {
+                ModelState.AddModelError("", "UserName or Password is wrong");
+                return View();
+            }
+            if (signInResult.IsLockedOut)
+            {
+                ModelState.AddModelError("", "Your Account is blocked One minute");
+                return View();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+        #endregion
 
         #region Register
         public IActionResult Register()
@@ -54,6 +89,14 @@ namespace Timezone.Controllers
             var rolename = await _roleManager.FindByNameAsync("User");
             await _userManager.AddToRoleAsync(newuser,rolename.Name);
             await _signInManager.SignInAsync(newuser,register.IsRemember);
+            return RedirectToAction("Index", "Home");
+        }
+        #endregion
+
+        #region SignOut
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
         #endregion
