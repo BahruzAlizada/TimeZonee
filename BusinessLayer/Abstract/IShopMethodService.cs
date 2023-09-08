@@ -11,5 +11,6 @@ namespace BusinessLayer.Abstract
         void Add(ShopMethod shopMethod);
         void Update(ShopMethod shopMethod);
         void Delete(int id);
+        void Activity(int id);
     }
 }

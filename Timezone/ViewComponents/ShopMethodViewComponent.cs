@@ -14,7 +14,7 @@ namespace Timezone.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            List<ShopMethod> shopMethods = shopMethodService.GetAll().Take(3).ToList();
+            List<ShopMethod> shopMethods = shopMethodService.GetAll().Where(x=>!x.IsDeactive).Take(3).ToList();
             return View(shopMethods);
         }
     }

@@ -13,6 +13,11 @@ namespace BusinessLayer.Concrete
             this.shopMethodDal=shopMethodDal;
         }
 
+        public void Activity(int id)
+        {
+            shopMethodDal.Activity(id);
+        }
+
         public void Add(ShopMethod shopMethod)
         {
             shopMethodDal.Add(shopMethod);
