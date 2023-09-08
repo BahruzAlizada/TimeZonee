@@ -24,12 +24,6 @@ builder.Services.AddIdentity<AppUser, AppRole>(Identityoptions =>
     Identityoptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
 }).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
 
-//builder.Services.AddMvc(config =>
-//{
-//    var policy = new AuthorizationPolicyBuilder()
-//    .RequireAuthenticatedUser().Build();
-//    config.Filters.Add(new AuthorizeFilter(policy));
-//});
 
 builder.Services.AddHttpClient();
 

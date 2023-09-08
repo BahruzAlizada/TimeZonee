@@ -22,12 +22,11 @@
                 <tbody>
                     
                         <tr>
-                            <td>@Model.Mision.Substring(0,10)</td>
-                            <td>@Model.Vision.Substring(0,10)</td>
+                        <td>@Html.Raw(Model.Mision.Substring(0,10))</td>
+                        <td>@Html.Raw(Model.Vision.Substring(0,10))</td>
                             <td>
                                 <div style="display:flex;justify-content:flex-end">
-                                    <a asp-asp-area="default" asp-controller="About" asp-action="Index" class="btn btn-warning  text-white" style="margin-right:10px"><i class="fa-solid fa-eye"></i></a>
-                                    <a asp-action="Update" class="btn btn-danger text-white" style="margin-right:10px">Yenilə</a>
+                                    <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-warning text-white" style="margin-right:10px">Yenilə</a>
                                 </div>
                             </td>
                         </tr>

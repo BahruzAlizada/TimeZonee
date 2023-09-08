@@ -15,7 +15,7 @@ namespace Timezone.ViewComponents
         public IViewComponentResult Invoke()
         {
             List<Blog> blogs = blogService.GetAll();
-            var bloglimit = blogs.Where(x =>!x.IsDeactive).OrderByDescending(x => x.Id).ToList();
+            var bloglimit = blogs.Where(x =>!x.IsDeactive).OrderByDescending(x => x.Id).Take(5).ToList();
             return View(bloglimit);
         }
     }

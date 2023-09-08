@@ -8,10 +8,12 @@ namespace EntityLayer.Concrete
     {
         public int Id { get; set; }
         public int BlogId { get; set; }
+        public int AppUserId { get; set; }
         public string CommentMessage { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.UtcNow.AddHours(4);
         public Blog Blog { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

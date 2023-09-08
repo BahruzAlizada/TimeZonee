@@ -1,5 +1,9 @@
 ﻿@model List<Blog>
-   
+@{
+    ViewBag.Title = "Bloqlar";
+}
+
+
 <!--? Hero Area Start-->
 <div class="slider-area ">
     <div class="single-slider slider-height2 d-flex align-items-center">
@@ -33,7 +37,7 @@
                             </div>
 
                             <div class="blog_details">
-                                <a class="d-inline-block" asp-action="BlogDetail" asp-route-id=@blog.Id>
+                                <a class="d-inline-block" asp-action="Detail" asp-route-id=@blog.Id>
                                     <h2>@blog.Title</h2>
                                 </a>
                                 <p>@blog.Description</p>
@@ -69,24 +73,22 @@
 
                 </div>
             </div>
+
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
                     <aside class="single_sidebar_widget search_widget">
                         <form method="get">
                             <div class="form-group">
                                 <div class="input-group mb-3">
-                                    <input type="text" name="search" class="form-control" placeholder='Search Keyword'
+                                    <input type="text" name="search" class="form-control" placeholder='Açar sözü daxil edin'
                                            onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Search Keyword'">
+                                           onblur="this.placeholder = 'Açar sözü daxil edin'">
                                     <div class="input-group-append">
                                         <button class="btns" type="submit"><i class="ti-search"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                    type="submit">
-                                Search
-                            </button>
+                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Axtar</button>
                         </form>
                     </aside>
 
@@ -132,22 +134,6 @@
                                 </a>
                             </li>
                         </ul>
-                    </aside>
-
-
-                    <aside class="single_sidebar_widget newsletter_widget">
-                        <h4 class="widget_title">Newsletter</h4>
-
-                        <form action="#">
-                            <div class="form-group">
-                                <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                                       onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                    type="submit">
-                                Subscribe
-                            </button>
-                        </form>
                     </aside>
                 </div>
             </div>

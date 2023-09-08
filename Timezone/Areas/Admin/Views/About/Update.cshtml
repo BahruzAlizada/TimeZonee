@@ -1,1 +1,54 @@
-﻿@model About
+﻿@model AboutModel
+
+
+<div class="row">
+    <div class="col-8">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Basic Layout</h5>
+                <small class="text-muted float-end">Default label</small>
+            </div>
+            <div class="card-body">
+                <form method="post">
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Mision" class="form-label" for="basic-default-message">Missiya</label>
+                        <textarea id="editor" asp-for="Mision" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="Mision"></span>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Vision" class="form-label" for="basic-default-message">Vizion</label>
+                        <textarea id="editorr" asp-for="Vision" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="Vision"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editorr'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+
+}

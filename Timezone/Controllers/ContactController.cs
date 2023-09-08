@@ -3,6 +3,7 @@ using BusinessLayer.ValidationRule.FluentValidation;
 using EntityLayer.Concrete;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Timezone.Models;
 
 namespace Timezone.Controllers
 {
@@ -28,22 +29,21 @@ namespace Timezone.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Index(Contact contact)
+        public IActionResult Index(ContactModel model)
         {
             ContactInfo info = contactInfoService.Get();
             ViewBag.EmailInfo = info.Email;
             ViewBag.PhoneInfo = info.Phone;
 
-            var validator = new ContactValidator();
-            var result = validator.Validate(contact);
-            if (!result.IsValid)
+            Contact contact = new Contact
             {
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
-                }
-                return View();
-            }
+                Id = model.Id,
+                Subject = model.Subject,
+                Message = model.Message,
+                FullName = model.FullName,
+                Email = model.Email,
+            };
+            
             contactService.Add(contact);
             return RedirectToAction("Index");
         }

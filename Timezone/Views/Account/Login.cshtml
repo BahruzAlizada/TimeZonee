@@ -1,4 +1,7 @@
 ﻿@model LoginVM 
+@{
+    ViewBag.Title = "Daxil Ol";
+}
 
   <!-- Hero Area Start-->
 <div class="slider-area ">
@@ -7,7 +10,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="hero-cap text-center">
-                        <h2>Login</h2>
+                        <h2>Daxil ol</h2>
                     </div>
                 </div>
             </div>
@@ -23,12 +26,12 @@
             <div class="col-lg-6 col-md-6">
                 <div class="login_part_text text-center">
                     <div class="login_part_text_iner">
-                        <h2>New to our Shop?</h2>
+                        <h2>Bir Hesabın yoxdur?</h2>
                         <p>
                             There are advances being made in science and technology
                             everyday, and a good example of this is the
                         </p>
-                        <a asp-controller="Account" asp-action="Register" class="btn_3">Yeni Hesab yarat</a>
+                        <a asp-controller="Account" asp-action="Register" class="btn_3">Yenİ Hesab yarat</a>
                     </div>
                 </div>
             </div>
@@ -38,8 +41,9 @@
                         <h3>
                             Xoş Gəldiniz ! <br>
                             Zəhmət olmasa daxil olun
+                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                         </h3>
-                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                        
                         <form class="row contact_form" method="post">
 
                             <div class="col-md-12 form-group p_star">
@@ -48,7 +52,7 @@
                             </div>
 
                             <div class="col-md-12 form-group p_star">
-                                <input asp-for="Password" class="form-control"  placeholder="Password">
+                                <input asp-for="Password" class="form-control"  placeholder="Şifrə">
                                 <span class="text-danger" asp-validation-for="Password"></span>
                             </div>
                             <div class="col-md-12 form-group">
@@ -57,9 +61,9 @@
                                     <label for="f-option">Məni xatırla</label>
                                 </div>
                                 <button type="submit" value="submit" class="btn_3">
-                                    Daxi Ol
+                                    Daxİl Ol
                                 </button>
-                                <a class="lost_pass" href="#">forget password?</a>
+                                <a class="lost_pass" href="#">Şifrəmi unutdum ?</a>
                             </div>
                         </form>
                     </div>

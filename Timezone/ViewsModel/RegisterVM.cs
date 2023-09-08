@@ -4,21 +4,21 @@ namespace Timezone.ViewsModel
 {
     public class RegisterVM
     {
-        [Required(ErrorMessage = "Name can not be null")]
+        [Required(ErrorMessage = "Bu xana boş ola bilməz")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Surname can not be null")]
+        [Required(ErrorMessage = "Bu xana boş ola bilməz")]
         public string Surname { get; set; }
-        [Required(ErrorMessage = "UserName can not be null")]
+        [Required(ErrorMessage = "Bu xana boş ola bilməz")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "Email can not be null")]
-        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Bu xana boş ola bilməz")]
+        [DataType(DataType.EmailAddress,ErrorMessage ="Email ünvanınızı düzgün qeyd edin")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Password can not be null")]
+        [Required(ErrorMessage = "Bu xana boş ola bilməz")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required(ErrorMessage = "Password can not be null")]
+        [Required(ErrorMessage = "Bu xana boş ola bilməz")]
         [DataType(DataType.Password)]
-        [Compare("Password")]
+        [Compare("Password",ErrorMessage ="Şifrə düzgün deyil ")]
         public string CheckPassword { get; set; }
         public bool IsRemember { get; set; }
     }

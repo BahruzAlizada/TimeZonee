@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Timezone.Models;
 
 namespace Timezone.Areas.Admin.Controllers
 {
@@ -22,20 +23,48 @@ namespace Timezone.Areas.Admin.Controllers
         #endregion
 
         #region Update
-        public IActionResult Update()
+        public IActionResult Update(int id)
         {
-            About dbabout = aboutService.Get();
-            return View(dbabout);
+            About dbabout = aboutService.GetById(id);
+            if (dbabout is null) return BadRequest();
+
+            AboutModel dbModel = new AboutModel
+            {
+                Id = dbabout.Id,
+                Vision = dbabout.Vision,
+                Mision = dbabout.Mision
+            };
+
+            return View(dbModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Update(About about)
+        public IActionResult Update(int id,AboutModel model)
         {
-            About dbabout = aboutService.Get();
-            dbabout.Mision = about.Mision;
-            dbabout.Vision = about.Vision;
+            #region Get
+            About dbabout = aboutService.GetById(id);
+            if (dbabout is null) return BadRequest();
+
+            AboutModel dbModel = new AboutModel
+            {
+                Id = dbabout.Id,
+                Vision = dbabout.Vision,
+                Mision = dbabout.Mision
+            };
+            #endregion
+
+            dbModel.Id = model.Id;
+            dbModel.Mision = model.Mision;
+            dbModel.Vision = model.Vision;
+
+            About about = new About
+            {
+                Id = model.Id,
+                Vision = model.Vision,
+                Mision = model.Mision
+            };
 
             aboutService.Update(about);
             return RedirectToAction("Index");

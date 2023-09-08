@@ -4,7 +4,7 @@ using System;
 
 namespace EntityLayer.Concrete
 {
-    public class Contact : IEntity
+    public sealed class Contact : IEntity
     {
         public int Id { get; set; }
         public string Message { get; set; }

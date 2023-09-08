@@ -34,24 +34,24 @@ namespace Timezone.Controllers
             AppUser user = await _userManager.FindByEmailAsync(login.Email);
             if (user == null)
             {
-                ModelState.AddModelError("","Email or Password is wrong");
+                ModelState.AddModelError("","Email və yaxud Şifrə yanlışdır");
                 return View();
             }
             if (user.IsDeactive)
             {
-                ModelState.AddModelError("", "Your Account is blocked");
+                ModelState.AddModelError("", "Sizin hesabınız bloklanıb");
                 return View();
             }
             Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.PasswordSignInAsync(user, login.Password,
                 login.IsRemember, true);
             if (!signInResult.Succeeded)
             {
-                ModelState.AddModelError("", "UserName or Password is wrong");
+                ModelState.AddModelError("", "Email və yaxud Şifrə yanlışdır");
                 return View();
             }
             if (signInResult.IsLockedOut)
             {
-                ModelState.AddModelError("", "Your Account is blocked One minute");
+                ModelState.AddModelError("", "Sizin hesabınız 1 dəqiqəlik blokandı.");
                 return View();
             }
 

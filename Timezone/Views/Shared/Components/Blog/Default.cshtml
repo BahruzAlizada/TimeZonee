@@ -3,12 +3,9 @@
 @foreach (var blog in Model)
 {
     <div class="media post_item">
-        <img src="~/assets/img/blog/@blog.Image" style="width:90px;height:85px;" alt="post">
+        <img src="~/assets/img/blog/@blog.Image" style="width:95px;height:85px;" alt="post">
         <div class="media-body">
-            <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id">
-                <h3>@blog.Title</h3>
-            </a>
-         @*   <p>02 Hours ago</p>*@
+            <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id"><h3>@blog.Title</h3></a>
         </div>
     </div>
 }

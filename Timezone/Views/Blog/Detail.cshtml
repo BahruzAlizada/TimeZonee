@@ -1,0 +1,116 @@
+﻿@model Blog
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Bloq</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--================Blog Area =================-->
+<section class="blog_area single-post-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                    <div class="feature-img">
+                        <img class="img-fluid" src="~/assets/img/blog/@Model.Image" alt="">
+                    </div>
+                    <div class="blog_details">
+                        <h2>@Model.Title</h2>
+                        <p>@Html.Raw(Model.Description)</p>
+                    </div>
+                </div>
+                <div class="navigation-top">
+                    <div class="d-sm-flex justify-content-between text-center">
+                        <ul class="social-icons">
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="comments-area">
+                    @await Component.InvokeAsync("Comment",new {blogId=Model.Id})
+                </div>
+                <div class="comment-form">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <h4>Şərhinizi burada yaza bilərsiniz</h4>
+                        @*<form class="form-contact comment_form" method="post" id="commentForm">*@
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Şərh yaz"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <a href="#" id="click" class="button button-contactForm btn_1 boxed-btn">Paylaş</a>
+                            </div>
+                        @*</form>*@
+                    }
+                    else
+                    {
+                    <p>Şərh yazmaq üçün sayta <a style="color:black;" asp-controller="Account" asp-action="Login">daxil olun</a>.</p>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Digər Bloqlar</h3>
+                        @await Component.InvokeAsync("Blog")
+                    </aside>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================ Blog Area end =================-->
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var useremail = "@User.Identity.Name";
+            var blogId = @Model.Id;
+
+            $("#click").click(function (e) {
+                e.preventDefault(); // Bağlantının varsayılan davranışını engeller
+
+                var comment = $("#comment").val();
+
+                $.ajax({
+                    url: "/Blog/AddComment/",
+                    type: "POST",
+                    data: {
+                        useremail: useremail,
+                        blogId: blogId,
+                        comment: comment
+                    },
+                    success: function (html) {
+                        console.log("Ok");
+                    }
+                });
+            });
+        });
+    </script>
+}

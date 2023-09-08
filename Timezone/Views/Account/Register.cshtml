@@ -1,4 +1,7 @@
 ﻿@model RegisterVM
+@{
+    ViewBag.Title = "Qeydiyyat";
+}
 
        <!-- Hero Area Start-->
     <div class="slider-area ">
@@ -7,7 +10,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>Register</h2>
+                            <h2>Qeydiyyat</h2>
                         </div>
                     </div>
                 </div>
@@ -76,12 +79,12 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="login_part_text text-center">
                         <div class="login_part_text_iner">
-                            <h2>New to our Shop?</h2>
+                            <h2>Bir Hesabın var?</h2>
                             <p>
                                 There are advances being made in science and technology
                                 everyday, and a good example of this is the
                             </p>
-                            <a asp-controller="Account" asp-action="Login" class="btn_3">Zatən bir Hesabım var</a>
+                            <a asp-controller="Account" asp-action="Login" class="btn_3">Zatən bİr Hesabım var</a>
                         </div>
                     </div>
                 </div>
@@ -91,3 +94,6 @@
     </section>
     <!--================login_part end =================-->
 
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
