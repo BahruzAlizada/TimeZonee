@@ -10,5 +10,6 @@ namespace EntityLayer.Concrete
         public string Surname { get; set; }
         public bool IsDeactive { get; set; }
         public List<Comment> Comments { get; set; }
+        public List<BasketItem> BasketItems { get; set; }
     }
 }

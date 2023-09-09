@@ -19,20 +19,30 @@
         <!-- Header Right -->
         <div class="header-right">
             <ul>
-                <li>
+               @* <li>
                     <div class="nav-search search-switch">
                         <span class="flaticon-search"></span>
                     </div>
-                </li>
+                </li>*@
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li><p>@User.Identity.Name</p></li>
+                    <div class="dropdown show">
+                        <a style="padding:9px; background-color:white; color:black;" href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          @User.Identity.Name
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Hesaba keç</a>
+                            <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Çıxış et</a>
+                        </div>
+                    </div>
+                    <li><a asp-controller="Basket" asp-action="Index"><span class="flaticon-shopping-cart"></span></a> </li>
                 }
                 else
                 {
                     <li> <a asp-controller="Account" asp-action="Login"><span class="flaticon-user"></span></a></li>
                 }
-                <li><a href="~/cart.html"><span class="flaticon-shopping-cart"></span></a> </li>
+                
             </ul>
         </div>
     </div>

@@ -7,7 +7,14 @@
 			<div class="popular-img">
 				<img src="~/assets/img/product/@product.ProductImages.FirstOrDefault().Image" alt="">
 				<div class="img-cap">
-					<span>Səbətə at</span>
+					@if (User.Identity.IsAuthenticated)
+					{
+						<a asp-controller="Basket" asp-action="AddBasket" asp-route-id="@product.Id"><span>Səbətə at</span></a>
+					}
+					else
+					{
+						<a asp-controller="Account" asp-action="Login"><span>Səbətə at</span></a>
+					}
 				</div>
 				<div class="favorit-items">
 					<span class="flaticon-heart"></span>

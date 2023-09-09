@@ -1,0 +1,98 @@
+﻿@model List<BasketItemVM>
+
+@{ 
+    ViewBag.Title = "Səbət";
+}
+
+@section Css{
+    <style>
+        #csm{
+            background-color:green;
+            color:white;
+            padding:10px;
+            border-radius:5px;
+        }
+    </style>
+}
+
+    <!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Səbət</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero Area End-->
+
+<!--================Cart Area =================-->
+<section class="cart_area section_padding">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Məhsul</th>
+                            <th scope="col">Miqdar</th>
+                            <th scope="col">Ümumi Məbləğ</th>
+                            <th scope="col" style="text-align:right">Aksiyonlar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                            
+                            double totalPrice = item.Count * item.Price;
+                            
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="~/assets/img/product/@item.Image" alt="" />
+                                        </div>
+                                        <div class="media-body"><p>@item.ProductName</p></div>
+                                    </div>
+                                </td>
+
+                                <td><h5>@item.Count ədəd</h5></td>
+                                <td>
+                                    <h5>@totalPrice Azn</h5>
+                                </td>
+                                <td>
+                                    <div style="display:flex;justify-content:flex-end">
+                                        <a id="csm" asp-action="PlusProductCount" asp-route-id="@item.ProductId" style="margin-right:10px">1 ədəd artır</a>
+                                        <a id="csm" asp-action="MinusProductCount" asp-route-id="@item.ProductId" style="margin-right:10px">1 ədəd azalt</a>
+                                        <a id="csm" asp-action="DeleteProduct" asp-route-id="@item.ProductId" style="margin-right:10px">Məhsulu sil</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+                        <tr class="bottom_button">
+                            
+                            <td>
+                                <a class="btn_1" asp-action="ClearBasket">Səbəti təmizlə</a>
+                            </td>
+                            
+                            <td>
+                                <a class="btn_1" asp-controller="Product" asp-action="Index">Alış-verişə davam et</a>
+                            </td>
+
+                            <td>
+                                <a class="btn_1" href="#">Təsdiqlə</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+               
+            </div>
+        </div>
+</section>
+<!--================End Cart Area =================-->

@@ -10,19 +10,14 @@ namespace Timezone.Controllers
     public class ContactController : Controller
     {
         private readonly IContactService contactService;
-        private readonly IContactInfoService contactInfoService;
-        public ContactController(IContactService contactService,IContactInfoService contactInfoService)
+        public ContactController(IContactService contactService)
         {
-            this.contactInfoService= contactInfoService;
             this.contactService= contactService;
         }
 
         #region Index
         public IActionResult Index()
         {
-            ContactInfo info = contactInfoService.Get();
-            ViewBag.EmailInfo = info.Email;
-            ViewBag.PhoneInfo = info.Phone;
             return View();
         }
 
@@ -31,9 +26,6 @@ namespace Timezone.Controllers
 
         public IActionResult Index(ContactModel model)
         {
-            ContactInfo info = contactInfoService.Get();
-            ViewBag.EmailInfo = info.Email;
-            ViewBag.PhoneInfo = info.Phone;
 
             Contact contact = new Contact
             {
