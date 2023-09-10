@@ -61,21 +61,21 @@ namespace Timezone.Controllers
 				{
 					AppUser user = await userManager.FindByNameAsync(User.Identity.Name);
 
-					var existed = await context.BasketItems.FirstOrDefaultAsync(x=>x.ProductId==product.Id && x.AppUserId == user.Id);
-					if(existed is not null)
+					BasketItem basketItem = await context.BasketItems.FirstOrDefaultAsync(x=>x.ProductId==product.Id && x.AppUserId == user.Id);
+					if(basketItem is not null)
 					{
-						existed.Count++;
+                        basketItem.Count++;
 					}
 					else
 					{
-						existed = new BasketItem
+                        basketItem = new BasketItem
 						{
 							AppUserId = user.Id,
 							ProductId = product.Id,
 							Price = product.Price,
 							Count = 1
 						};
-						await context.BasketItems.AddAsync(existed);
+						await context.BasketItems.AddAsync(basketItem);
 					}
 				}
 				await context.SaveChangesAsync();

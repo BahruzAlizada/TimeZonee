@@ -1,5 +1,5 @@
 ﻿@model List<Comment>
-<h4>05 Comments</h4>
+<h4>@Model.Count yazılmış Şərh</h4>
 @foreach(Comment comment in Model)
 {
     <div class="comment-list">
@@ -7,18 +7,15 @@
             <div class="user justify-content-between d-flex">
 
                 <div class="desc">
-                    <p class="comment">
-                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                    </p>
+                    <p class="comment">@comment.CommentMessage</p>
                     <div class="d-flex justify-content-between">
                         <div class="d-flex align-items-center">
-                            <h5>Emilly Blunt</h5>
-                            <p class="date">December 4, 2017 at 3:12 pm </p>
+                            <h5>@comment.FullName</h5>
+                            <p class="date">@comment.CreatedTime.ToString("dd MMMM yyyy") @comment.CreatedTime.ToShortTimeString() </p>
                         </div>
-                        <div class="reply-btn">
+                       @* <div class="reply-btn">
                             <a href="#" class="btn-reply text-uppercase">reply</a>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>

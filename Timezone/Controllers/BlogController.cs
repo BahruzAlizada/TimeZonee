@@ -2,6 +2,8 @@
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Timezone.Models;
+using Timezone.ViewsModel;
 
 namespace Timezone.Controllers
 {
@@ -45,36 +47,60 @@ namespace Timezone.Controllers
         {
             Blog blog = blogService.GetById(id);
             if (blog == null) return BadRequest();
-
+            
             return View(blog);
         }
-        #endregion
 
-        #region AddComment
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> AddComment(string useremail,int blogId,string comment)
+        public async Task<IActionResult> Detail(int id,string comment)
         {
-            var user = await userManager.FindByEmailAsync(useremail);
-            if(comment is null)
-            {
-                ModelState.AddModelError("comment", "Bu xana boş ola bilməz");
-                return View();
-            }
+            Blog blog = blogService.GetById(id);
+            if (blog == null) return BadRequest();
 
+          
+
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+            
             Comment commentt = new Comment
             {
-                FullName = user.Name + user.Surname,
+                FullName = user.UserName,
                 AppUserId = user.Id,
-                BlogId = blogId,
+                BlogId = id,
                 CommentMessage = comment,
-                Email = useremail
+                Email = user.Email
             };
 
             commentService.Add(commentt);
-            return Ok();
+            return Redirect(Request.Headers["Referer"].ToString());
         }
         #endregion
+
+        //#region AddComment
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> AddComment(int blogId,string comment)
+        //{
+        //    var user = await userManager.FindByNameAsync(User.Identity.Name);
+        //    if(comment is null)
+        //    {
+        //        ModelState.AddModelError("comment", "Bu xana boş ola bilməz");
+        //        return View();
+        //    }
+
+        //    Comment commentt = new Comment
+        //    {
+        //        FullName = user.Name + user.Surname,
+        //        AppUserId = user.Id,
+        //        BlogId = blogId,
+        //        CommentMessage = comment,
+        //        Email = user.Email
+        //    };
+
+        //    commentService.Add(commentt);
+        //    return Ok();
+        //}
+        //#endregion
     }
 }
