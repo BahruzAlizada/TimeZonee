@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="~/admin/assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="~/admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="~/admin/assets/css/demo.css" />
-
+    @RenderSection("Css",false)
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="~/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
@@ -63,6 +63,11 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
+
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Profil</span>
+                    </li>
+
                     <!-- Dashboard -->
                     <li class="menu-item">
                         <a asp-controller="Profile" asp-action="Index" class="menu-link">
@@ -73,47 +78,17 @@
 
                     <!--Layouts-->
                     <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Kateqoriya və Məhsullar</span>
+                        <span class="menu-header-text">İstifadəçilər</span>
                     </li>
 
                     <li class="menu-item">
-                        <a asp-controller="Category" asp-action="Index" class="menu-link">
+                        <a asp-controller="Users" asp-action="Index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Kateqoriya</div>
+                            <div>İstifadəçilər</div>
                         </a>
                     </li>
 
-                    <li class="menu-item">
-                        <a asp-controller="Product" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Məhsullar</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a asp-controller="ShopMethod" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Shop Method</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a asp-controller="About" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Haqqımızda</div>
-                        </a>
-                    </li>
-
-                     <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Əlaqə</span>
-                    </li>
-
-                    <li class="menu-item">
-                        <a asp-controller="Contact" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Əlaqə</div>
-                        </a>
-                    </li>
+                  
 
                 </ul>
             </aside>
@@ -132,15 +107,17 @@
 
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                         <!-- Search -->
-                        <div class="navbar-nav align-items-center">
+                      <form method="get" action="/User/Users/Index/">
+                            <div class="navbar-nav align-items-center">
                             <div class="nav-item d-flex align-items-center">
                                 <i class="bx bx-search fs-4 lh-0"></i>
-                                <input type="text"
+                                <input type="text" name="username"
                                        class="form-control border-0 shadow-none"
                                        placeholder="İstifadəçi axtar..."
                                        aria-label="Search..." />
                             </div>
                         </div>
+                      </form>
                         <!-- /Search -->
 
                         <ul class="navbar-nav flex-row align-items-center ms-auto">

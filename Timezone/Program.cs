@@ -5,12 +5,24 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using System;
+using Timezone.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.ContainerDependencies();
+
+builder.Services.AddSignalR();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowed(orign => true);
+    });
+});
+
 builder.Services.AddDbContext<Context>();
 
 builder.Services.AddIdentity<AppUser, AppRole>(Identityoptions =>
@@ -38,8 +50,9 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors();
 app.UseStaticFiles();
-
+app.MapHub<ChatHub>("/chathub");
 app.UseRouting();
 
 app.UseAuthentication();

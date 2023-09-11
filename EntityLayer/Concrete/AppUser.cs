@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntityLayer.Concrete
 {
@@ -10,6 +10,6 @@ namespace EntityLayer.Concrete
         public string Surname { get; set; }
         public bool IsDeactive { get; set; }
         public List<Comment> Comments { get; set; }
-        public List<BasketItem> BasketItems { get; set; }
+        public List<BasketItem> BasketItems { get; set; }   
     }
 }
