@@ -1,4 +1,6 @@
-﻿<div class="container-fluid">
+﻿@model Bonus
+
+<div class="container-fluid">
     <div class="menu-wrapper">
         <!-- Logo -->
         <div class="logo">
@@ -19,13 +21,10 @@
         <!-- Header Right -->
         <div class="header-right">
             <ul>
-               @* <li>
-                    <div class="nav-search search-switch">
-                        <span class="flaticon-search"></span>
-                    </div>
-                </li>*@
+               
                 @if (User.Identity.IsAuthenticated)
                 {
+                    
                     <div class="dropdown show">
                         <a style="padding:9px; background-color:white; color:black;" href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           @User.Identity.Name
@@ -36,6 +35,11 @@
                             <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Çıxış et</a>
                         </div>
                     </div>
+                    <li>
+                        <div style="border:0.8px solid black;">
+                            <span>@Model.Amount Bonus</span>
+                        </div>
+                    </li>
                     <li><a asp-controller="Basket" asp-action="Index"><span class="flaticon-shopping-cart"></span></a> </li>
                 }
                 else

@@ -11,5 +11,6 @@ namespace EntityLayer.Concrete
         public bool IsDeactive { get; set; }
         public List<Comment> Comments { get; set; }
         public List<BasketItem> BasketItems { get; set; }   
+        public Bonus Bonus { get; set; }
     }
 }

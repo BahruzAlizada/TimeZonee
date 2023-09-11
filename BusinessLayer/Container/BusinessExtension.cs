@@ -48,6 +48,9 @@ namespace BusinessLayer.Container
 
             services.AddScoped<ICommentService,CommentManager>();
             services.AddScoped<ICommentDal, EFCommentDal>();
+
+            services.AddScoped<IBonusService, BonusManager>();
+            services.AddScoped<IBonusDal, EFBonusDal>();
         }
 
     }
