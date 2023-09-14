@@ -17,9 +17,13 @@ namespace Timezone.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            AppUser user = await userManager.FindByNameAsync(User.Identity.Name);
-            Bonus bonus = await bonusService.GetBonusUser(user.Id);
-            return View(bonus);
+            if (User.Identity.IsAuthenticated)
+            {
+                AppUser user = await userManager.FindByNameAsync(User.Identity.Name);
+                Bonus bonus = await bonusService.GetBonusUser(user.Id);
+                return View(bonus);
+            }
+            return View();
         }
     }
 }

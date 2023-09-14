@@ -33,8 +33,7 @@
                            <td>@item.Name @item.Surname</td>
                             <td>
                                 <div style="display:flex;justify-content:flex-end">
-                                    <a class="btn btn-warning text-white" style="margin-right:10px">Profilə bax</a>
-                                    <a asp-action="Message" asp-route-username=@item.UserName class="btn btn-info text-white" style="margin-right:10px">Mesaj at</a>
+                                    <a asp-action="Detail" asp-route-username="@item.UserName" class="btn btn-warning text-white" style="margin-right:10px">Profilə bax</a>
                                 </div>
                             </td>
                         </tr>

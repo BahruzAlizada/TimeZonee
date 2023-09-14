@@ -17,6 +17,8 @@ namespace EntityLayer.Concrete
         public List<IFormFile> Photos { get; set; }
         public bool IsDelivery { get; set; }
         public bool IsStock { get; set; }
+        public bool? IsMan { get; set; }
+        public bool? IsChild { get; set; }
         public bool IsDeactive { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.UtcNow.AddHours(4);
         public Category Category { get; set; }

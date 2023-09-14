@@ -1,0 +1,213 @@
+﻿
+@{
+    ViewData["Title"] = "Hesab Haqqında";
+}
+
+@model UserVM
+
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-pills flex-column flex-md-row mb-3">
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Index"><i class="bx bx-user me-1"></i> Profil</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" asp-action="AccountInformation"><i class="bx bx-link-alt me-1"></i>Hesab haqqında</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="ChangePassword"><i class="bx bx-compass me-1"></i> Şifrə</a>
+                </li>
+            </ul>
+
+
+            <div class="card mb-4">
+                <h5 class="card-header">Hesab haqqında</h5>
+                <!-- Account -->
+                <hr class="my-0" />
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="row">
+
+                            <div class="d-flex align-items-start align-items-sm-center gap-4 my-2">
+                                <img src="~/assets/img/user/@Model.Image"
+                                     alt="user-avatar"
+                                     class="d-block rounded"
+                                     height="100"
+                                     width="100"
+                                     id="uploadedAvatar" />
+                                <div class="button-wrapper">
+                                    <label asp-for=Photo class="btn btn-primary me-2 mb-4" tabindex="0">
+                                        <span class="d-none d-sm-block"><i class='bx bxs-downvote'></i></span>
+                                        <i class="bx bx-upload d-block d-sm-none"></i>
+                                        <input asp-for="Photo" class="account-file-input"hidden accept="image/*" />
+                                    </label>
+                                    <span class="text-danger" asp-validation-for="Photo"></span>
+                                    <p class="text-muted mb-0">JPG, PNG və yaxud JPEG tipli fayllar. Maksimum 256 Kb.</p>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Name" class="form-label">Ad</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span class="text-danger" asp-validation-for="Name"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Surname" class="form-label">Soyad</label>
+                                <input asp-for="Surname" class="form-control" />
+                                <span class="text-danger" asp-validation-for="Surname"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="UserName" class="form-label">İstifadəçi adı</label>
+                                <input asp-for="UserName" class="form-control" />
+                                <span class="text-danger" asp-validation-for="UserName"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Email" class="form-label">Email</label>
+                                <input asp-for="Email" class="form-control" />
+                                <span class="text-danger" asp-validation-for="Email"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="PhoneNumber" class="form-label">Telefon Nömrəsi</label>
+                                <input asp-for="PhoneNumber" class="form-control" />
+                                <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Bio" class="form-label">Bio</label>
+                                <textarea asp-for="Bio" class="form-control"></textarea>
+                                <span class="text-danger" asp-validation-for="Bio"></span>
+                            </div>
+
+                        </div>
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-outline-success me-2">Yadda Saxla</button>
+                            <button type="reset" class="btn btn-outline-secondary">Sıfırla</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /Account -->
+            </div>
+
+
+            <!--Sales Account Start-->
+            <div style="margin-bottom:30px;" class="card">
+                <h5 class="card-header">Satış Hesabını aktivləşdir</h5>
+                <div class="card-body">
+                    <div class="mb-3 col-12 mb-0">
+                        <div class="alert alert-warning">
+                            <h6 class="alert-heading fw-bold mb-1">Hesabını satış hesabına çevirmək istəyirsən ?</h6>
+                        </div>
+                    </div>
+
+
+                    <!-- Vertically Centered Modal -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="mt-3">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                                Satış Hesabını aktivləşdir
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalCenterTitle">Satış Hesabını aktivləşdir</h5>
+                                            <button type="button"
+                                                    class="btn-close"
+                                                    data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <hr />
+                                        <div class="modal-body">
+                                            <p>
+                                                Satış hesabını aktivləşdirdikdən sonra sənin məhsulların ön səhifədə daha çox çıxacaq
+                                                və eyni zamanda profilinə bir rozet əlavə olunacaqdır
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                                Bağla
+                                            </button>
+                                            <a asp-action="SalesAccount" asp-route-username="@Model.UserName" class="btn btn-success">Satış Hesabını aktivləşdir</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Vertically Centered Modal -->
+
+                </div>
+            </div>
+            <!--Sales Account End-->
+            <!--Delete Account Start-->
+            <div class="card">
+                <h5 class="card-header">Hesabı Sil</h5>
+                <div class="card-body">
+                    <div class="mb-3 col-12 mb-0">
+                        <div class="alert alert-warning">
+                            <h6 class="alert-heading fw-bold mb-1">Hesabı silmək istdəyindən əminsən mi ?</h6>
+                        </div>
+                    </div>
+
+
+                    <!-- Vertically Centered Modal -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="mt-3">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                                Hesabı Sil
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalCenterTitle">Hesabı Sil</h5>
+                                            <button type="button"
+                                                    class="btn-close"
+                                                    data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <hr />
+                                        <div class="modal-body">
+                                            <p>
+                                                Hesabı silsən əgər yenidən bu hesaba qayıtmağın münkün olmayacaqdır.
+                                                Hesabı silmək üçün aşağıdaki "Hesabı sil" düyməsinə basın
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                                Bağla
+                                            </button>
+                                            <a asp-action="DeactiveAccount" class="btn btn-danger">Hesabı Sil</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Vertically Centered Modal -->
+
+                </div>
+            </div>
+            <!--Delete Account End-->
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

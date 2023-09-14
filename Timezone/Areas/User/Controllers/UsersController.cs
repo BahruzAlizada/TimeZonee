@@ -9,17 +9,17 @@ using Timezone.ViewsModel;
 
 namespace Timezone.Areas.User.Controllers
 {
-    [Area("User")]
-    [Authorize(Roles ="User")]
-    public class UsersController : Controller
-    {
-        private readonly UserManager<AppUser> userManager;
-		private readonly IHubContext<ChatHub> hubContext; 
-        public UsersController(UserManager<AppUser> userManager,IHubContext<ChatHub> hubContext)
-        {
-            this.userManager = userManager;
+	[Area("User")]
+	[Authorize(Roles = "User")]
+	public class UsersController : Controller
+	{
+		private readonly UserManager<AppUser> userManager;
+		private readonly IHubContext<ChatHub> hubContext;
+		public UsersController(UserManager<AppUser> userManager, IHubContext<ChatHub> hubContext)
+		{
+			this.userManager = userManager;
 			this.hubContext = hubContext;
-        }
+		}
 
 		#region Index
 		public async Task<IActionResult> Index(string username)
@@ -41,6 +41,27 @@ namespace Timezone.Areas.User.Controllers
 			}).Take(8).ToListAsync();
 
 			return View(usersVM);
+		}
+		#endregion
+
+		#region Detail
+		public async Task<IActionResult> Detail(string username)
+		{
+			AppUser dbuser = await userManager.FindByNameAsync(username);
+			UserVM userVM = new UserVM
+			{
+				Name = dbuser.Name,
+				Surname = dbuser.Surname,
+				Email = dbuser.Email,
+				UserName = dbuser.UserName,
+				Image = dbuser.Image,
+				PhoneNumber = dbuser.PhoneNumber,
+				Bio = dbuser.Bio,
+				IsSalesAccount = dbuser.IsSalesAccount,
+				IsVerify = dbuser.IsVerify
+			};
+
+			return View(userVM);
 		}
 		#endregion
 
