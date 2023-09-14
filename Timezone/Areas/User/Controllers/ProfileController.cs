@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Helper;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Helper;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +16,9 @@ namespace Timezone.Areas.User.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly IWebHostEnvironment env;
-        public ProfileController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,IWebHostEnvironment env)
+        private readonly IBonusService bonusService;
+        public ProfileController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,
+            IWebHostEnvironment env,IBonusService bonusService)
         {
             this.userManager = userManager;
             this.signInManager=signInManager;
@@ -170,6 +173,7 @@ namespace Timezone.Areas.User.Controllers
         {
             AppUser user = await userManager.FindByNameAsync(username);
             user.IsSalesAccount = true;
+            await userManager.UpdateAsync(user);
             return RedirectToAction("Index");
         }
         #endregion

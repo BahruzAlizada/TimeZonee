@@ -16,6 +16,7 @@ namespace EntityLayer.Concrete
         [NotMapped]
         public List<IFormFile> Photos { get; set; }
         public bool IsDelivery { get; set; }
+        public bool IsFavorite { get; set; }
         public bool IsStock { get; set; }
         public bool? IsMan { get; set; }
         public bool? IsChild { get; set; }

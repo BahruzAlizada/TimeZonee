@@ -16,7 +16,12 @@ namespace BusinessLayer.Helper
             return file.Length / 1024 > 1024 / 4;
         }
 
-        public static async Task<string> SaveFileAsync(this IFormFile file, string folder)
+		public static bool IsOlder512Kb(this IFormFile file)
+		{
+			return file.Length / 1024 > 1024 / 2;
+		}
+
+		public static async Task<string> SaveFileAsync(this IFormFile file, string folder)
         {
             string filename = Guid.NewGuid().ToString() + file.FileName;
             string path = Path.Combine(folder, filename);

@@ -1,0 +1,47 @@
+﻿@model Slider
+<hr class="my-5" />
+
+<!-- Bordered Table -->
+<div class="card">
+    <div class="card-header" style="display:flex;justify-content:space-between">
+        <h2>
+            Slayd
+        </h2>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Şəkil</th>
+                        <th>Başlıq</th>
+                        <th style="text-align:right">Aksiyonlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <img src="~/assets/img/slider/@Model.Image" style="object-fit:cover;height:150px; width:90px;" />
+                        </td>
+                        <td>@Model.Title</td>
+                        <td>
+                            <div style="display:flex;justify-content:flex-end">
+                                <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-warning text-white" style="margin-right:10px">Yenilə</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--/ Bordered Table -->
+
+<hr class="my-5" />
+
+
+
+
