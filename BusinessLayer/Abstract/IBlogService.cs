@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
         Blog GetById(int id);
         void Add(Blog blog);
         void Update(Blog blog);
+        void Activity(int id);
     }
 }

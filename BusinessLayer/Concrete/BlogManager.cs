@@ -13,6 +13,10 @@ namespace BusinessLayer.Concrete
             this.blogDal= blogDal;
         }
 
+        public void Activity(int id)
+        {
+           blogDal.Activity(id);
+        }
 
         public void Add(Blog blog)
         {

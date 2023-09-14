@@ -7,5 +7,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IBlogDal : IRepositoryBase<Blog>
     {
+        void Activity(int id);
     }
 }
