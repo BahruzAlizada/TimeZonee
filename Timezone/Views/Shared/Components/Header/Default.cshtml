@@ -1,5 +1,4 @@
-﻿@model Bonus
-
+﻿
 <div class="container-fluid">
     <div class="menu-wrapper">
         <!-- Logo -->
@@ -36,8 +35,8 @@
                         </div>
                     </div>
                     <li>
-                        <div style="border:0.6px solid black;">
-                            <span>@Model.Amount Bonus</span>
+                        <div>
+                            <span>@ViewBag.Bonus</span>
                         </div>
                     </li>
                     <li><a asp-controller="Basket" asp-action="Index"><span class="flaticon-shopping-cart"></span></a> </li>

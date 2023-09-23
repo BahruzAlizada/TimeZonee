@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Principal;
+using Timezone.Models;
 using Timezone.ViewsModel;
 
 namespace Timezone.Areas.User.Controllers
@@ -177,7 +178,6 @@ namespace Timezone.Areas.User.Controllers
             return RedirectToAction("Index");
         }
         #endregion
-
 
     }
 }

@@ -1,0 +1,110 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<!-- Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Məhsul</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero Area End-->
+
+
+<div style="padding-bottom:40px;" class="container">
+    <div class="row">
+
+        <div class="col-sm-6">
+            <div class="product_img_slide owl-carousel">
+                @foreach (var item in Model.ProductImages)
+                {
+                    <div class="single_product_img">
+                        <img style="height:400px;width:385px;" src="~/assets/img/product/@item.Image" alt="#" class="img-fluid">
+                    </div>
+                } 
+            </div>
+        </div>
+
+
+        <div class="col-sm-6">
+            <div class="single_product_text text-center">
+                <h2>Məhsul Haqqında </h2>
+                <h4>Məhsul adı - @Model.Name</h4>
+                <h5>Kateqoriya -  @Model.Category.Name</h5>
+                <h5>Qiymət - @Model.Price Azn</h5>
+                
+                <h5> Çatdırılma - 
+                    @if (Model.IsDelivery)
+                    {
+                        <span>var</span>
+                    }
+                    else
+                    {
+                        <span>yoxdur</span>
+                    }
+                </h5>
+
+
+                <h5>
+                    Cins -
+                    @if (Model.IsMan == true)
+                    {
+                        <span>Kişi</span>
+                    }
+                    else
+                    {
+                        <span>Qadın</span>
+                    }
+                </h5>
+
+                <div class="card_area">
+                    <div class="add_to_cart">
+                        <a href="#" class="btn_3">Sİfarİş Et</a>
+                        <a asp-controller="Basket" asp-action="AddBasket" asp-route-id="@Model.Id" class="btn_3">Səbətə at</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

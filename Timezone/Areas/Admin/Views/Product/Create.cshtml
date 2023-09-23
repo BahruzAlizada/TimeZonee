@@ -34,6 +34,14 @@
                     </div>
 
                     <div class="mb-3 form-group">
+                        <label asp-for="IsMan" class="form-label">Kişi üçün</label>
+                        <input asp-for="IsMan" value="true" type="radio" />
+
+                        <label asp-for="IsMan" class="form-label">Qadın üçün</label>
+                        <input asp-for="IsMan" value="false" type="radio" />
+                    </div>
+
+                    <div class="mb-3 form-group">
                         <label asp-for="IsDelivery" class="form-label">Çatdırılma var</label>
                         <input asp-for="IsDelivery" value="true" type="radio" />
 

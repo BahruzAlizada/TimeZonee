@@ -21,7 +21,8 @@ namespace Timezone.ViewComponents
             {
                 AppUser user = await userManager.FindByNameAsync(User.Identity.Name);
                 Bonus bonus = await bonusService.GetBonusUser(user.Id);
-                return View(bonus);
+                ViewBag.Bonus = bonus.Amount;
+                return View();
             }
             return View();
         }

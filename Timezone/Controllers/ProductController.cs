@@ -11,11 +11,20 @@ namespace Timezone.Controllers
         {
             this.productService = productService;
         }
+
         #region Index
         public IActionResult Index()
         {
             List<Product> products = productService.GetProducts();
             return View(products);
+        }
+        #endregion
+
+        #region ProductDetail
+        public IActionResult Detail(int id)
+        {
+            var product = productService.GetProduct(id);
+            return View(product);
         }
         #endregion
     }

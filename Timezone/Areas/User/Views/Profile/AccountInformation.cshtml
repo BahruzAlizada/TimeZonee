@@ -96,60 +96,68 @@
                 <!-- /Account -->
             </div>
 
+            @if(Model.IsSalesAccount)
+            {
 
-            <!--Sales Account Start-->
-            <div style="margin-bottom:30px;" class="card">
-                <h5 class="card-header">Satış Hesabını aktivləşdir</h5>
-                <div class="card-body">
-                    <div class="mb-3 col-12 mb-0">
-                        <div class="alert alert-warning">
-                            <h6 class="alert-heading fw-bold mb-1">Hesabını satış hesabına çevirmək istəyirsən ?</h6>
+            }
+            else
+            {
+                <div style="margin-bottom:30px;" class="card">
+                    <h5 class="card-header">Satış Hesabını aktivləşdir</h5>
+                    <div class="card-body">
+                        <div class="mb-3 col-12 mb-0">
+                            <div class="alert alert-warning">
+                                <h6 class="alert-heading fw-bold mb-1">Hesabını satış hesabına çevirmək istəyirsən ?</h6>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <!-- Vertically Centered Modal -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="mt-3">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalCenter">
-                                Satış Hesabını aktivləşdir
-                            </button>
+                        <!-- Vertically Centered Modal -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="mt-3">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                                    Satış Hesabını aktivləşdir
+                                </button>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalCenterTitle">Satış Hesabını aktivləşdir</h5>
-                                            <button type="button"
-                                                    class="btn-close"
-                                                    data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <hr />
-                                        <div class="modal-body">
-                                            <p>
-                                                Satış hesabını aktivləşdirdikdən sonra sənin məhsulların ön səhifədə daha çox çıxacaq
-                                                və eyni zamanda profilinə bir rozet əlavə olunacaqdır
-                                            </p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                                Bağla
-                                            </button>
-                                            <a asp-action="SalesAccount" asp-route-username="@Model.UserName" class="btn btn-success">Satış Hesabını aktivləşdir</a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalCenterTitle">Satış Hesabını aktivləşdir</h5>
+                                                <button type="button"
+                                                        class="btn-close"
+                                                        data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <hr />
+                                            <div class="modal-body">
+                                                <p>
+                                                    Satış hesabını aktivləşdirdikdən sonra sənin məhsulların ön səhifədə daha çox çıxacaq
+                                                    və eyni zamanda profilinə bir rozet əlavə olunacaqdır
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                                    Bağla
+                                                </button>
+                                                <a asp-action="SalesAccount" asp-route-username="@Model.UserName" class="btn btn-success">Satış Hesabını aktivləşdir</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Vertically Centered Modal -->
+                        <!-- Vertically Centered Modal -->
 
+                    </div>
                 </div>
-            </div>
+            }
+            <!--Sales Account Start-->
+            
             <!--Sales Account End-->
+
             <!--Delete Account Start-->
             <div class="card">
                 <h5 class="card-header">Hesabı Sil</h5>
@@ -165,12 +173,12 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="mt-3">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalCenterr">
                                 Hesabı Sil
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                            <div class="modal fade" id="modalCenterr" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
