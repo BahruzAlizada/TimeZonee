@@ -18,7 +18,7 @@ namespace EntityLayer.Concrete
         public bool IsDelivery { get; set; }
         public bool IsFavorite { get; set; }
         public bool IsStock { get; set; }
-        public bool? IsMan { get; set; }
+        public bool IsMan { get; set; }
         public bool? IsChild { get; set; }
         public bool IsDeactive { get; set; }
         public DateTime CreatedTime { get; set; } = DateTime.UtcNow.AddHours(4);

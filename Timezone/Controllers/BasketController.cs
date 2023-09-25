@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Timezone.ViewsModel;
 
 namespace Timezone.Controllers
 {
+	[Authorize(Roles="User")]
 	public class BasketController : Controller
 	{
 		private readonly IProductService productService;
@@ -44,6 +46,7 @@ namespace Timezone.Controllers
 					});
 				}
 			}
+
 			return View(basketItemVMs);
 		}
 		#endregion

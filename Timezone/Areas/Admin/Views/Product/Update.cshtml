@@ -67,6 +67,14 @@
                     </div>
 
                     <div class="mb-3 form-group">
+                        <label asp-for="IsFavorite" class="form-label">Önə çıxart</label>
+                        <input asp-for="IsFavorite" value="true" type="radio" />
+
+                        <label asp-for="IsFavorite" class="form-label">Önə çıxartma </label>
+                        <input asp-for="IsFavorite" value="false" type="radio" />
+                    </div>
+
+                    <div class="mb-3 form-group">
                         <label asp-for="IsDelivery" class="form-label">Çatdırılma var</label>
                         <input asp-for="IsDelivery" value="true" type="radio" />
 
