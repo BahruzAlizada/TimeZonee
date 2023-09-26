@@ -23,6 +23,21 @@ namespace BusinessLayer.Concrete
             commentDal.Delete(comment); 
         }
 
+        public Comment GetById(int id)
+        {
+            return commentDal.Get(x => x.Id == id);
+        }
+
+        public List<Comment> GetCommentsByUser(string name, int pageNumber, int pageSize)
+        {
+            return commentDal.GetCommentsByUser(name,pageNumber,pageSize);
+        }
+
+        public int TotalCountsByUser(string name)
+        {
+            return commentDal.TotalCountsByUser(name);
+        }
+
         public void Update(Comment comment)
         {
             commentDal.Update(comment); 
