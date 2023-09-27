@@ -27,7 +27,7 @@
         <div class="row product-btn justify-content-between mb-40">
 
             <div class="my-2">
-                <form asp-action="Index" asp-controller="Product">
+                <form asp-action="Index" asp-controller="Product" id="filterForm">
                     <select onchange="this.form.submit()" name="sort" class="form-select">
                         <option value="">Ən Yeni Məhsullar</option>
                         <option value="2">Kişilər üçün</option>
@@ -86,12 +86,19 @@
             }
         </div>
 
-        <div class="row justify-content-center">
-            <div class="my-3">
-                <a id="loadMore" style="color:white;" class="btn btn-outline-danger">Daha Çox Məhsul</a>
-                <input type="hidden" @ViewBag.ProductsCount />
+        @if (ViewBag.Take >= Model.Count)
+        {
+            
+        }
+        else
+        {
+            <div class="row justify-content-center">
+                <div class="my-3">
+                    <a id="loadMore" style="color:white;" class="btn btn-outline-danger">Daha Çox Məhsul</a>
+                    <input type="hidden" @ViewBag.ProductsCount />
+                </div>
             </div>
-        </div>
+        }
 
     </div>
 </section>

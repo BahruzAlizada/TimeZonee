@@ -51,6 +51,9 @@ namespace BusinessLayer.Container
 
             services.AddScoped<IBonusService, BonusManager>();
             services.AddScoped<IBonusDal, EFBonusDal>();
+
+            services.AddScoped<IFaqService, FaqManager>();
+            services.AddScoped<IFaqDal, EFFaqDal>();
         }
 
     }

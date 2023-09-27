@@ -39,8 +39,11 @@ namespace Timezone.Controllers
                     productss.OrderByDescending(x => x.Price);
                     break;
             }
+            int take = 18;
             ViewBag.ProductsCount = context.Products.Where(x =>!x.IsDeactive).ToList();
-            var productlist = productss.Where(x=>!x.IsDeactive).OrderByDescending(x=>x.Id).Take(18).ToList();
+            ViewBag.Take = take;
+
+            var productlist = productss.Where(x=>!x.IsDeactive).OrderByDescending(x=>x.Id).Take(take).ToList();
             return View(productlist);
         }
         #endregion
