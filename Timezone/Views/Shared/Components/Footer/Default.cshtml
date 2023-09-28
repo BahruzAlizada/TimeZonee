@@ -6,11 +6,11 @@
             <div class="single-footer-caption mb-30">
                 <!-- logo -->
                 <div class="footer-logo">
-                    <a asp-controller="Home" asp-action="Index"><img src="~/assets/img/logo/logo2_footer.png" alt=""></a>
+                    <a asp-controller="Home" asp-action="Index"><img src="~/assets/img/logo/@Model.Bio.FooterImage" alt=""></a>
                 </div>
                 <div class="footer-tittle">
                     <div class="footer-pera">
-                        <p>Asorem ipsum adipolor sdit amet, consectetur adipisicing elitcf sed do eiusmod tem.</p>
+                        <p>@Html.Raw(Model.Bio.FooterDescription)</p>
                         <div class="footer-social">
                             <a href="@Model.SocialMedia.TviterLink"><i class="fab fa-twitter"></i></a>
 @*                            <a href="@Model."><i class="fab fa-facebook-f"></i></a>
@@ -58,8 +58,8 @@
                 <h4>Dəstək</h4>
                 <ul>
                     <li><a asp-controller="Faq" asp-action="Index">Ən çox verilən Suallar</a></li>
-                    <li><a href="~/#">Terms & Conditions</a></li>
-                    <li><a href="~/#">Privacy Policy</a></li>
+                    <li><a href="~/#">Məhsulunu bizə sat</a></li>
+                    <li><a href="~/#">Məxfilik Siyasəti</a></li>
                     <li><a href="~/#">Report a Payment Issue</a></li>
                 </ul>
             </div>

@@ -1,0 +1,54 @@
+﻿@model BioModel
+
+<div class="row">
+    <div class="col-8">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Bloq</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="HeaderPhoto" class="form-label">Başlıq Şəkil</label>
+                        <input asp-for="HeaderPhoto" accept="image/*" class="form-control" />
+                        <span asp-validation-for="HeaderPhoto" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="FooterPhoto" class="form-label">Son Şəkil</label>
+                        <input asp-for="FooterPhoto" accept="image/*" class="form-control" />
+                        <span asp-validation-for="FooterPhoto" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="FooterDescription" class="form-label">Təsvir</label>
+                        <textarea asp-for="FooterDescription" id="editor" class="form-control"></textarea>
+                        <span asp-validation-for="FooterDescription" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Dəyiş</button>
+                    <a asp-action="Index" class="btn btn-secondary">Geri qayıt</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+
+}
+
+

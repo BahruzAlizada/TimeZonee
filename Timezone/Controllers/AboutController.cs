@@ -16,7 +16,22 @@ namespace Timezone.Controllers
         }
         public IActionResult Index()
         {
-            About about = aboutService.Get();
+            About about;
+
+            if (!memoryCache.TryGetValue("about", out about))
+            {
+                about = aboutService.Get();
+
+                var CacheEntryOptions = new MemoryCacheEntryOptions
+                {
+                    SlidingExpiration = TimeSpan.FromMinutes(5),
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30),
+                    Priority=CacheItemPriority.High,
+                };
+
+                memoryCache.Set("about",about, CacheEntryOptions);
+            }
+
             return View(about);
         }
     }

@@ -6,5 +6,6 @@ namespace Timezone.ViewsModel
     {
         public SocialMedia SocialMedia { get; set; }
         public List<Product> Products { get; set; }
+        public Bio Bio { get; set; }
     }
 }

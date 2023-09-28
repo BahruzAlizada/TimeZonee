@@ -28,6 +28,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Bonus> Bonuses { get; set; }
         public DbSet<Faq> Faqs { get; set; }
+        public DbSet<Bio> Bios { get; set; }
     
     }
 }

@@ -54,6 +54,9 @@ namespace BusinessLayer.Container
 
             services.AddScoped<IFaqService, FaqManager>();
             services.AddScoped<IFaqDal, EFFaqDal>();
+
+            services.AddScoped<IBioService, BioManager>();
+            services.AddScoped<IBioDal,EFBioDal>();
         }
 
     }
