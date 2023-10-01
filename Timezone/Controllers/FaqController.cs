@@ -9,10 +9,12 @@ namespace Timezone.Controllers
     {
         private readonly IFaqService faqService;
         private readonly IMemoryCache memoryCache;
-        public FaqController(IFaqService faqService,IMemoryCache memoryCache)
+        private readonly ILogger<FaqController> logger;
+        public FaqController(IFaqService faqService, IMemoryCache memoryCache, ILogger<FaqController> logger)
         {
             this.faqService = faqService;
             this.memoryCache = memoryCache;
+            this.logger = logger;
         }
 
         #region Index

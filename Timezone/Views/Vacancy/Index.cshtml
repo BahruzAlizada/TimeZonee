@@ -1,0 +1,39 @@
+﻿@model List<Vacancy>
+
+@{
+    ViewBag.Title = "Vakansiyalar";
+}
+
+<!--? Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Vakansiyalar</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--? Hero Area End-->
+
+<!--Vacancy Start-->
+<div style="padding:40px 0;" class="container">
+    <div class="row">
+        <div class="col-12">
+            <div>
+            @foreach (Vacancy vacancy in Model)
+            {
+               
+                    <article style="height:60px; border-radius:7px;border:1.5px solid black;margin:10px 0;">
+                        <a style="margin-top:25px;margin-left:15px;padding:200px 20px; font-size:21px; color:black;" asp-action="Detail" asp-route-id="@vacancy.Id">@vacancy.VacancyName</a>
+                    </article>
+            }
+            </div>
+        </div>
+    </div>
+</div>
+<!--VAcancy End-->

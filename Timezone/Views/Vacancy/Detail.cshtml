@@ -1,0 +1,48 @@
+﻿@model Vacancy
+@{
+    ViewBag.Title = Model.VacancyName;
+}
+<!--? Hero Area Start-->
+<div class="slider-area ">
+    <div class="single-slider slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Vakansiya</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--? Hero Area End-->
+
+
+<!--Vacancy Start-->
+<div style="padding:40px 0px;" class="container">
+    <div class="row">
+        <div class="col-12">
+            <div>
+                <h2>@Model.VacancyName</h2>
+                <p>Dərc olunma tarixi - @Model.CreatedTime.ToShortDateString()</p>
+                <div>
+                    <h4>Vakansiya haqqında</h4>
+                    <p>@Html.Raw(Model.VacancyDescription)</p>
+                </div>
+                <div>
+                    <h4>Tələb Olunanlar</h4>
+                    <p>@Html.Raw(Model.Required)</p>
+                </div>
+                <div>
+                    <p>
+                        Müraciət etmək üçün Cv-nizi Başlıq bölməsinə "<strong>@Model.VacancyName</strong>" yazaraq
+                        "<strong>@Model.Email</strong>" elektron poçtuna göndərin
+                    </p>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!--Vacancy End-->

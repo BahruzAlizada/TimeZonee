@@ -19,9 +19,6 @@ namespace BusinessLayer.Container
             services.AddScoped<IContactService, ContactManager>();
             services.AddScoped<IContactDal,EFContactDal>();
 
-            services.AddScoped<IContactInfoService,ContactInfoManager>();
-            services.AddScoped<IContactInfoDal, EFContactInfoDal>();
-
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<IBlogDal,EFBlogDal>();
 
@@ -30,9 +27,6 @@ namespace BusinessLayer.Container
 
             services.AddScoped<ISocialMediaService, SocialMediaManager>();
             services.AddScoped<ISocialMediaDal, EFSocialMediaDal>();
-
-            services.AddScoped<IGaleryService, GaleryManager>();
-            services.AddScoped<IGaleryDal, EFGaleryDal>();
 
             services.AddScoped<INewsletterService, NewsletterManager>();
             services.AddScoped<INewsletterDal, EFNewsletterDal>();
@@ -57,6 +51,11 @@ namespace BusinessLayer.Container
 
             services.AddScoped<IBioService, BioManager>();
             services.AddScoped<IBioDal,EFBioDal>();
+
+            services.AddScoped<IVacancyService, VacancyManager>();
+            services.AddScoped<IVacancyDal, EFVacancyDal>();
+
+            
         }
 
     }

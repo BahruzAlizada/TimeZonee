@@ -29,6 +29,8 @@ namespace DataAccessLayer.Concrete
         public DbSet<Bonus> Bonuses { get; set; }
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Bio> Bios { get; set; }
-    
+        public DbSet<Vacancy> Vacancies { get; set; }
+        public DbSet<Candidate> Candidates { get; set; }
+        public DbSet<Logger> Loggers { get; set; }
     }
 }

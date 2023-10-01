@@ -1,0 +1,74 @@
+﻿@model VacancyModel
+
+<div class="row">
+    <div class="col-8">
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Vakansiya</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="VacancyName" class="form-label">Vakansiya Adı</label>
+                        <input asp-for="VacancyName" class="form-control" />
+                        <span asp-validation-for="VacancyName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Salary" class="form-label">Maaş</label>
+                        <input asp-for="Salary" class="form-control" />
+                        <span asp-validation-for="Salary" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="VacancyDescription" class="form-label">Vakansiya haqqında</label>
+                        <textarea asp-for="VacancyDescription" id="editor" class="form-control"></textarea>
+                        <span asp-validation-for="VacancyDescription" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 form-group">
+                        <label asp-for="Required" class="form-label">Tələb olunanlar</label>
+                        <textarea asp-for="Required" id="editorr" class="form-control"></textarea>
+                        <span asp-validation-for="Required" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Yarat</button>
+                    <a asp-action="Index" class="btn btn-secondary">Geri qayıt</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editorr'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+
+}
+
+

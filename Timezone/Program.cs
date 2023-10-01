@@ -2,7 +2,7 @@ using BusinessLayer.Container;
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity; 
 using Microsoft.AspNetCore.Mvc.Authorization;
 using System;
 using Timezone.Hubs;
@@ -15,7 +15,15 @@ builder.Services.ContainerDependencies();
 
 builder.Services.AddSignalR();
 
+
 builder.Services.AddMemoryCache();
+
+builder.Services.AddLogging(log =>
+{
+    log.ClearProviders();
+    log.SetMinimumLevel(LogLevel.Information);
+    log.AddConsole();
+});
 
 builder.Services.AddCors(options =>
 {
@@ -27,17 +35,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddDbContext<Context>();
 
-builder.Services.AddIdentity<AppUser, AppRole>(Identityoptions =>
-{
-    Identityoptions.User.RequireUniqueEmail = true;
-    Identityoptions.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._";
-    Identityoptions.Password.RequiredLength = 8;
-    Identityoptions.Password.RequireNonAlphanumeric = false;
-    Identityoptions.Lockout.AllowedForNewUsers = true;
-    Identityoptions.Lockout.MaxFailedAccessAttempts = 5;
-    Identityoptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
-}).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
-
+builder.Services.IdentityOptions();
 
 builder.Services.AddHttpClient();
 

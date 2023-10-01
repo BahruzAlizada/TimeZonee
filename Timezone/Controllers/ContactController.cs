@@ -10,14 +10,16 @@ namespace Timezone.Controllers
     public class ContactController : Controller
     {
         private readonly IContactService contactService;
-        public ContactController(IContactService contactService)
+        private readonly ILogger<ContactController> logger;
+        public ContactController(IContactService contactService, ILogger<ContactController> logger)
         {
-            this.contactService= contactService;
+            this.contactService = contactService;
+            this.logger = logger;
         }
 
         #region Index
         public IActionResult Index()
-        {
+        {  
             return View();
         }
 
@@ -26,7 +28,7 @@ namespace Timezone.Controllers
 
         public IActionResult Index(ContactModel model)
         {
-
+            logger.LogWarning("ContactController's Index method's post is called");
             Contact contact = new Contact
             {
                 Id = model.Id,
@@ -40,5 +42,6 @@ namespace Timezone.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+
     }
 }

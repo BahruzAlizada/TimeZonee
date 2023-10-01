@@ -16,10 +16,12 @@ namespace Timezone.Controllers
 	{
 		private readonly IProductService productService;
 		private readonly UserManager<AppUser> userManager;
-        public BasketController(IProductService productService,UserManager<AppUser> userManager)
+		private readonly ILogger<BasketController> logger;
+        public BasketController(IProductService productService,UserManager<AppUser> userManager,ILogger<BasketController> logger)
         {
 			this.productService = productService;
 			this.userManager = userManager;
+			this.logger = logger;
         }
 
 		#region Index
@@ -46,7 +48,7 @@ namespace Timezone.Controllers
 					});
 				}
 			}
-
+			logger.LogInformation($"{DateTime.Now} - {User.Identity.Name} seen basket");
 			return View(basketItemVMs);
 		}
 		#endregion

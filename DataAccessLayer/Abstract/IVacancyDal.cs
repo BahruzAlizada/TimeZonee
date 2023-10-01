@@ -5,7 +5,8 @@ using System;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface IGaleryDal : IRepositoryBase<Galery>
+    public interface IVacancyDal : IRepositoryBase<Vacancy>
     {
+        void Activity(int id);
     }
 }
