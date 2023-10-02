@@ -1,4 +1,5 @@
 ﻿using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Timezone.ViewsModel;
@@ -6,6 +7,7 @@ using Timezone.ViewsModel;
 namespace Timezone.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "UserManager,Admin")]
     public class RoleController : Controller
     {
         private readonly RoleManager<AppRole> roleManager;

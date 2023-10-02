@@ -68,93 +68,167 @@
                     <li class="menu-item">
                         <a asp-controller="Dashboard" asp-action="Index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div data-i18n="Analytics">Ana Səhifə</div>
+                            <div>Ana Səhifə</div>
                         </a>
                     </li>
 
+                    @if (User.IsInRole("ComManager") || User.IsInRole("Admin"))
+                    {
+
+                        <li class="menu-header small text-uppercase">
+                            <span class="menu-header-text">ComManager</span>
+                        </li>
+                        <!-- Layouts -->
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon tf-icons bx bx-layout"></i>
+                                <div data-i18n="Layouts">ComManager</div>
+                            </a>
+
+                            <ul class="menu-sub">
+
+                                <li class="menu-item">
+                                    <a asp-controller="Bio" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Bio</div>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item">
+                                    <a asp-controller="Slider" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Slaydlar</div>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item">
+                                    <a asp-controller="Blog" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Bloqlar</div>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item">
+                                    <a asp-controller="ShopMethod" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Shop Method</div>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item">
+                                    <a asp-controller="About" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Haqqımızda</div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("ProductManager") || User.IsInRole("Admin"))
+                    {
+                        <li class="menu-header small text-uppercase">
+                            <span class="menu-header-text">ProductManager</span>
+                        </li>
+                        <!-- Layouts -->
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon tf-icons bx bx-layout"></i>
+                                <div data-i18n="Layouts">ProductManager</div>
+                            </a>
+
+                            <ul class="menu-sub">
+
+                                <li class="menu-item">
+                                    <a asp-controller="Category" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Kateqoriya</div>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item">
+                                    <a asp-controller="Product" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Məhsullar</div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("ContactManager") || User.IsInRole("Admin"))
+                    {
+
+                        <li class="menu-header small text-uppercase">
+                            <span class="menu-header-text">ContactManager</span>
+                        </li>
+                        <!-- Layouts -->
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon tf-icons bx bx-layout"></i>
+                                <div data-i18n="Layouts">ContactManager</div>
+                            </a>
+
+                            <ul class="menu-sub">
+
+                                <li class="menu-item">
+                                    <a asp-controller="Contact" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Əlaqə</div>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item">
+                                    <a asp-controller="Faq" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Faq</div>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item">
+                                    <a asp-controller="Vacancy" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Vakansiyalar</div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("UserManager") || User.IsInRole("Admin"))
+                    {
+                        <li class="menu-header small text-uppercase">
+                            <span class="menu-header-text">UserManager</span>
+                        </li>
+                         <!-- Layouts -->
                     <li class="menu-item">
-                        <a asp-controller="Bio" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Bio</div>
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div data-i18n="Layouts">UserManager</div>
                         </a>
-                    </li>
 
-                    <li class="menu-item">
-                        <a asp-controller="Slider" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Slaydlar</div>
-                        </a>
-                    </li>
+                        <ul class="menu-sub">
 
-                    <li class="menu-item">
-                        <a asp-controller="Category" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Kateqoriya</div>
-                        </a>
-                    </li>
+                                <li class="menu-item">
+                                    <a asp-controller="User" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>İstifadəçilər</div>
+                                    </a>
+                                </li>
 
-                    <li class="menu-item">
-                        <a asp-controller="Product" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Məhsullar</div>
-                        </a>
-                    </li>
+                                <li class="menu-item">
+                                    <a asp-controller="Role" asp-action="Index" class="menu-link">
+                                        <i class="menu-icon tf-icons bx bx-home-table"></i>
+                                        <div>Rollar</div>
+                                    </a>
+                                </li>
 
-                    <li class="menu-item">
-                        <a asp-controller="Blog" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Bloqlar</div>
-                        </a>
+                        </ul>
                     </li>
-
-                    <li class="menu-item">
-                        <a asp-controller="ShopMethod" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Shop Method</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a asp-controller="About" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Haqqımızda</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a asp-controller="Contact" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Əlaqə</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a asp-controller="Faq" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Faq</div>
-                        </a>
-                    </li>
-
-                     <li class="menu-item">
-                        <a asp-controller="Vacancy" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Vakansiyalar</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a asp-controller="User" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>İstifadəçilər</div>
-                        </a>
-                    </li>
-
-                     <li class="menu-item">
-                        <a asp-controller="Role" asp-action="Index" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-table"></i>
-                            <div>Rollar</div>
-                        </a>
-                    </li>
+                    }
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -171,88 +245,21 @@
                     </div>
 
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-                        <!-- Search -->
-                        <div class="navbar-nav align-items-center">
-                            <div class="nav-item d-flex align-items-center">
-                                <i class="bx bx-search fs-4 lh-0"></i>
-                                <input type="text"
-                                       class="form-control border-0 shadow-none"
-                                       placeholder="Search..."
-                                       aria-label="Search..." />
-                            </div>
-                        </div>
-                        <!-- /Search -->
 
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
-                            <!-- Place this tag where you want the button to render. -->
-                            <li class="nav-item lh-1 me-3">
-                                <a class="github-button"
-                                   href="https://github.com/themeselection/sneat-html-admin-template-free"
-                                   data-icon="octicon-star"
-                                   data-size="large"
-                                   data-show-count="true"
-                                   aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-                            </li>
-
-                            <!-- User -->
-                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <div class="avatar avatar-online">
-                                        <img src="~/admin/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                                    </div>
+                            <!--User-->
+                            <div class="dropdown">
+                                <a style="background-color:white;color:black;" class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @User.Identity.Name
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar avatar-online">
-                                                        <img src="~/admin/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-divider"></div>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bx bx-user me-2"></i>
-                                            <span class="align-middle">My Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bx bx-cog me-2"></i>
-                                            <span class="align-middle">Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <span class="d-flex align-items-center align-middle">
-                                                <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                                                <span class="flex-grow-1 align-middle">Billing</span>
-                                                <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-divider"></div>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="auth-login-basic.html">
-                                            <i class="bx bx-power-off me-2"></i>
-                                            <span class="align-middle">Log Out</span>
-                                        </a>
-                                    </li>
+
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Hesabım</a></li>
+                                    <li><a asp-area="default" asp-controller="Account" asp-action="Logout" class="dropdown-item">Çıxış Et</a></li>
+                                   
                                 </ul>
-                            </li>
-                            <!--/ User -->
+                            </div>
+                           <!--User-->
                         </ul>
                     </div>
                 </nav>

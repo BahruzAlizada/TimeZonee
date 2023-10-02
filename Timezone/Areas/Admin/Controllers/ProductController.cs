@@ -4,13 +4,14 @@ using BusinessLayer.ValidationRule.FluentValidation;
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Timezone.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "ProductManager,Admin")]
     public class ProductController : Controller
     {
         private readonly IProductService productService;

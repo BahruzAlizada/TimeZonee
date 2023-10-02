@@ -10,6 +10,13 @@
         <div class="main-menu d-none d-lg-block">
             <nav>
                 <ul id="navigation">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (!User.IsInRole("User"))
+                        {
+                            <li><a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Admin Panel</a></li>
+                        }
+                    }
                     <li><a asp-controller="Home" asp-action="Index">Ana Səhifə</a></li>
                     <li><a asp-controller="Product" asp-action="Index">Məhsullar</a></li>
                     <li><a asp-controller="About" asp-action="Index">Haqqımızda</a></li>

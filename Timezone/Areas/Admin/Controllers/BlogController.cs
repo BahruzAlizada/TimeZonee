@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.Helper;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Metadata;
 using Microsoft.AspNetCore.Mvc;
 using Timezone.Models;
@@ -8,7 +9,8 @@ using Timezone.Models;
 namespace Timezone.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	public class BlogController : Controller
+    [Authorize(Roles = "ComManager,Admin")]
+    public class BlogController : Controller
 	{
 		private readonly IBlogService blogService;
 		private readonly IWebHostEnvironment env;

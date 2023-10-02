@@ -2,11 +2,13 @@
 using BusinessLayer.ValidationRule.FluentValidation;
 using EntityLayer.Concrete;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Timezone.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "ProductManager,Admin")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService categoryService;

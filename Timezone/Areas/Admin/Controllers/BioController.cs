@@ -1,12 +1,14 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.Helper;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Timezone.Models;
 
 namespace Timezone.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="ComManager,Admin")]
     public class BioController : Controller
     {
         private readonly IBioService bioService;

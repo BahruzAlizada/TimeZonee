@@ -1,13 +1,15 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.Helper;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Timezone.Models;
 
 namespace Timezone.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	public class SliderController : Controller
+    [Authorize(Roles = "ComManager,Admin")]
+    public class SliderController : Controller
 	{
 		private readonly ISliderService sliderService;
 		private readonly IWebHostEnvironment env;

@@ -1,12 +1,14 @@
 ﻿using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Timezone.Models;
 
 namespace Timezone.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	public class FaqController : Controller
+    [Authorize(Roles = "ContactManager,Admin")]
+    public class FaqController : Controller
 	{
 		private readonly IFaqService faqService;
         public FaqController(IFaqService faqService)
