@@ -1,0 +1,79 @@
+﻿@model List<UserListVM>
+
+<hr class="my-5" />
+
+<!-- Bordered Table -->
+<div class="card">
+    <div class="card-header" style="display:flex;justify-content:space-between">
+        <h2>İstifadəçilər</h2>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Şəkil</th>
+                        <th>Ad və Soyad</th>
+                        <th>İstifadəçi adı</th>
+                        <th>Email</th>
+                        <th>Telefon</th>
+                        <th>Rol</th>
+                        <th>Status</th>
+                        <th style="text-align:right">Aksiyonlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (UserListVM item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @if(item.Image is not null)
+                                {
+                                    <img src="~/assets/img/user/@item.Image" style="max-width: 100px; max-height: 100px; border-radius:50px;" />
+                                }
+                                else
+                                {
+                                    <span>Yoxdur</span>
+                                }
+                            </td>
+                            <td>@item.Name @item.Surname</td>
+                            <td>@item.UserName</td>
+                            <td>@item.Email</td>
+                            <td>
+                                @if(item.PhoneNumber is not null)
+                                {
+                                    @item.PhoneNumber
+                                }
+                                else
+                                {
+                                    <span>Qeyd Edilməyib</span>
+                                }
+                            </td>
+                            <td>@item.Role</td>
+                            <td>
+                                @if (item.IsDeactive)
+                                {
+                                    <span style="padding:6px 4px; background-color:red;color:white;">Deaktiv</span>
+                                }
+                                else
+                                {
+                                    <span style="padding:6px 4px; background-color:green;color:white;">Aktiv</span>
+                                }
+                            </td>
+                            <td>
+                                <div style="display:flex;justify-content:flex-end">
+                                    <a asp-action="RoleChange" asp-route-username="@item.UserName" class="btn btn-primary text-white" style="margin-right:10px">Rolu Dəyiş</a>
+                                    <a asp-action="ResetPassword" asp-route-username="@item.UserName" class="btn btn-warning text-white" style="margin-right:10px">Şifrəni Sıfırla</a>
+                                    <a asp-action="Activity" asp-route-username="@item.UserName" class="btn btn-danger text-white" style="margin-right:10px">Status</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--/ Bordered Table -->
+
+<hr class="my-5" />

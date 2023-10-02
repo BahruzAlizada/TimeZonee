@@ -16,7 +16,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<Galery> Galeries { get;set; }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Newsteller> Newstellers { get;set; }
-        public DbSet<ContactInfo> ContactInfos { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -30,7 +29,5 @@ namespace DataAccessLayer.Concrete
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Bio> Bios { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
-        public DbSet<Candidate> Candidates { get; set; }
-        public DbSet<Logger> Loggers { get; set; }
     }
 }

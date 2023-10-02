@@ -3,20 +3,25 @@ using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Timezone.Controllers
 {
     public class ProductController : Controller
     {
         private readonly IProductService productService;
-        public ProductController(IProductService productService)
+        private readonly ILogger<ProductController> logger;
+        public ProductController(IProductService productService,ILogger<ProductController> logger)
         {
             this.productService = productService;
+            this.logger = logger;
         }
 
         #region Index
         public IActionResult Index(string search ,int sort=1)
         {
+            logger.LogInformation($"{DateTime.Now} - ProductController's index method is called");
+
             using var context = new Context();
             IQueryable<Product> productss = context.Products.Where(x=>!x.IsDeactive).Include(x=>x.Category).Include(x=>x.ProductImages).AsQueryable();
             if (!string.IsNullOrEmpty(search))

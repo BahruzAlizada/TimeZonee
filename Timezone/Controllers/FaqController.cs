@@ -20,22 +20,24 @@ namespace Timezone.Controllers
         #region Index
         public IActionResult Index()
         {
+            logger.LogInformation($"{DateTime.Now} - FaqsControlller's Index Method is called");
+
+            const string key = "faqs";
             List<Faq> faqs;
 
-            if(!memoryCache.TryGetValue("faqs",out faqs))
+            if(!memoryCache.TryGetValue(key,out faqs))
             {
                 faqs = faqService.GetFaqs().Where(x => !x.IsDeactive).OrderByDescending(x => x.Id).ToList();
 
-                var entryCacheOptions = new MemoryCacheEntryOptions
+                var memoryCacheEntryOptions = new MemoryCacheEntryOptions
                 {
-                    SlidingExpiration = TimeSpan.FromMinutes(15),
-                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(45),
-                    Priority = CacheItemPriority.Normal,
+                    SlidingExpiration = TimeSpan.FromMinutes(10),
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30),
+                    Priority = CacheItemPriority.High
                 };
 
-                memoryCache.Set("faqs", faqs, entryCacheOptions);
+                memoryCache.Set(key,faqs, memoryCacheEntryOptions);
             }
-             
             return View(faqs);
         }
         #endregion

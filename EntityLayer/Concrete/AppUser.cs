@@ -16,6 +16,5 @@ namespace EntityLayer.Concrete
         public List<Comment> Comments { get; set; }
         public List<BasketItem> BasketItems { get; set; }   
         public Bonus Bonus { get; set; }
-        public List<Logger> Loggers { get; set; }
     }
 }
