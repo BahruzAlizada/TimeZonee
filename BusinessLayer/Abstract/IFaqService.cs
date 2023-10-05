@@ -6,6 +6,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IFaqService
     {
+        Task<List<Faq>> GetAll();
         List<Faq> GetFaqs();
         Faq GetFaq(int id);
         void Add(Faq faq);

@@ -5,6 +5,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IVacancyService
     {
+        Task<List<Vacancy>> GetAll();
         List<Vacancy> GetVacancies();
         Vacancy GetVacancy(int id);
         void Activity(int id);

@@ -15,10 +15,11 @@ namespace Timezone.Controllers
         }
 
         #region Index
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             logger.LogInformation($"{DateTime.Now} - Vacancy Controller's Index Method is called");
-            List<Vacancy> vacancies = vacancyService.GetVacancies().Where(x=>!x.IsDeactive).OrderByDescending(x=>x.Id).ToList();
+
+            List<Vacancy> vacancies = await vacancyService.GetAll();
             return View(vacancies);
         }
         #endregion

@@ -18,6 +18,8 @@ builder.Services.AddSignalR();
 
 builder.Services.AddMemoryCache();
 
+builder.Services.AddStackExchangeRedisCache(options => options.Configuration = "localhost:2000");
+
 builder.Services.AddLogging(log =>
 {
     log.ClearProviders();
