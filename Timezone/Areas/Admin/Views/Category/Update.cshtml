@@ -1,4 +1,4 @@
-﻿@model Category
+﻿@model CategoryModel
 
 <div class="row">
     <div class="col-8">
@@ -10,9 +10,9 @@
                 <form method="post">
 
                     <div class="mb-3 form-group">
-                        <label asp-for="Name" class="form-label">Kateqoriya adı</label>
-                        <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <label asp-for="CategoryName" class="form-label">Kateqoriya adı</label>
+                        <input asp-for="CategoryName" class="form-control" />
+                        <span asp-validation-for="CategoryName" class="text-danger"></span>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Yenilə</button>
@@ -22,3 +22,8 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

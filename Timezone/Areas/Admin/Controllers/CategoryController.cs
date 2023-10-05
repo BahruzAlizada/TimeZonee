@@ -1,9 +1,9 @@
 ﻿using BusinessLayer.Abstract;
-using BusinessLayer.ValidationRule.FluentValidation;
 using EntityLayer.Concrete;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Timezone.Models;
 
 namespace Timezone.Areas.Admin.Controllers
 {
@@ -18,9 +18,15 @@ namespace Timezone.Areas.Admin.Controllers
         }
 
         #region Index
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         {
-            List<Category> categories = categoryService.GetAll().OrderByDescending(x => x.Id).ToList();
+            double take = 10;
+            ViewBag.PageCount = Math.Ceiling(categoryService.GetAll().Count / take);
+            ViewBag.CurrentPage = page;
+
+            List<Category> categories = categoryService.GetAll().OrderByDescending(x=>x.Id)
+                .Skip((page-1)*(int)take).Take((int)take).ToList();
+
             return View(categories);
         }
         #endregion
@@ -34,31 +40,26 @@ namespace Timezone.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Create(Category category)
+        public IActionResult Create(CategoryModel model)
         {
-            #region Validator
-            var validator = new CategoryValidator();
-            var result = validator.Validate(category);
-            if (!result.IsValid)
-            {
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
-                }
-                return View();
-            }
-            #endregion
 
             #region Exist
-            bool isExist = categoryService.GetAll().Any(x => x.Name == category.Name);
+            bool isExist = categoryService.GetAll().Any(x => x.Name == model.CategoryName);
             if (isExist)
             {
-                ModelState.AddModelError("Name", "Bu addan hal-hazırda var");
+                ModelState.AddModelError("CategoryName", "Bu adda kateqoriya hal-hazırda var");
                 return View();
             }
             #endregion
 
-            category.Image = "null";
+            Category category = new Category
+            {
+                Id = model.Id,
+                Image = "1",
+                Name = model.CategoryName,
+                IsDeactive = false
+            };
+            
             categoryService.Add(category);
             return RedirectToAction("Index");
         }
@@ -71,42 +72,52 @@ namespace Timezone.Areas.Admin.Controllers
             if (dbcat == null)
                 return BadRequest();
 
-            return View(dbcat);
+            CategoryModel dbModel = new CategoryModel
+            {
+                Id = dbcat.Id,
+                CategoryName = dbcat.Name
+            };
+
+            return View(dbModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public IActionResult Update(int id,Category category)
+        public IActionResult Update(int id,CategoryModel model)
         {
+            #region Get
             var dbcat = categoryService.GetById(id);
             if (dbcat == null)
                 return BadRequest();
 
-            #region Validator
-            var validator = new CategoryValidator();
-            var result = validator.Validate(category);
-            if (!result.IsValid)
+            CategoryModel dbModel = new CategoryModel
             {
-                foreach (var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-                return View();
-            }
+                Id = dbcat.Id,
+                CategoryName = dbcat.Name
+            };
             #endregion
 
             #region Exist
-            bool isExist = categoryService.GetAll().Any(x => x.Name == category.Name && x.Id!=category.Id);
+            bool isExist = categoryService.GetAll().Any(x => x.Name == model.CategoryName && x.Id!=model.Id);
             if (isExist)
             {
-                ModelState.AddModelError("Name", "Bu addan hal-hazırda var");
+                ModelState.AddModelError("CategoryName", "Bu adda kateqoriya hal-hazırda var");
                 return View();
             }
             #endregion
 
-            dbcat.Name = category.Name;
-            category.Image = "c";
+            dbModel.Id = model.Id;
+            dbModel.CategoryName = model.CategoryName;
+
+            Category category = new Category
+            {
+                Id = model.Id,
+                Name = model.CategoryName,
+                Image = "1",
+                IsDeactive = false
+            };
+
             categoryService.Update(category);
             return RedirectToAction("Index");
         }

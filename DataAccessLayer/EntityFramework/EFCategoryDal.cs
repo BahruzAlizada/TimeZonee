@@ -4,7 +4,6 @@ using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using System;
 
-
 namespace DataAccessLayer.EntityFramework
 {
     public class EFCategoryDal : EfRepositoryBase<Category, Context>, ICategoryDal
