@@ -19,9 +19,6 @@ namespace BusinessLayer.Container
             services.AddScoped<IContactService, ContactManager>();
             services.AddScoped<IContactDal,EFContactDal>();
 
-            services.AddScoped<IBlogService, BlogManager>();
-            services.AddScoped<IBlogDal,EFBlogDal>();
-
             services.AddScoped<ISliderService, SliderManager>();
             services.AddScoped<ISliderDal, EFSliderDal>();
 
@@ -37,8 +34,7 @@ namespace BusinessLayer.Container
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<IProductDal, EFProductDal>();
 
-            services.AddScoped<ICommentService,CommentManager>();
-            services.AddScoped<ICommentDal, EFCommentDal>();
+
 
             services.AddScoped<IBonusService, BonusManager>();
             services.AddScoped<IBonusDal, EFBonusDal>();

@@ -30,7 +30,7 @@ namespace DataAccessLayer.EntityFramework
         {
            using(var context = new Context())
             {
-                var product = context.Products.Include(x=>x.Category).Include(x=>x.ProductImages).FirstOrDefault(x=>x.Id==id);
+                var product = context.Products.Include(x=>x.Category).Include(x=>x.Gender).FirstOrDefault(x=>x.Id==id);
                 return product;
             }
         }
@@ -39,7 +39,7 @@ namespace DataAccessLayer.EntityFramework
         {
             using(var context = new Context())
             {
-                var products = context.Products.Include(x => x.ProductImages).Include(x => x.Category).ToList();
+                var products = context.Products.Include(x => x.Gender).Include(x => x.Category).ToList();
                 return products;
             }
         }

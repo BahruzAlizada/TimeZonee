@@ -9,6 +9,8 @@ namespace BusinessLayer.Abstract
         Task PlusBonus(int userId, double amount);
         Task MinusBonus(int userId, double amount);
         Task<Bonus> GetBonusUser(int userId);
+        Task<double> GetBonusAmountUser(int userId);
+        Task CreateBonus(int userID, double amount);
 
     }
 }

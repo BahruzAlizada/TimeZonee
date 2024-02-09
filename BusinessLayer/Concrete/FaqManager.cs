@@ -17,6 +17,8 @@ namespace BusinessLayer.Concrete
             this.distributedCache = distributedCache;
         }
 
+        const string cacheKey = "faqs";
+
         public void Activity(int id)
         {
            faqDal.Activity(id);
@@ -24,6 +26,7 @@ namespace BusinessLayer.Concrete
 
         public void Add(Faq faq)
         {
+            distributedCache.Remove(cacheKey);
             faqDal.Add(faq);
         }
 
@@ -34,17 +37,18 @@ namespace BusinessLayer.Concrete
 
         public async Task<List<Faq>> GetAll()
         {
-            const string cacheKey = "faqs";
-
             var cachedData = await distributedCache.GetStringAsync(cacheKey);
             List<Faq> faqs;
 
-            if (cachedData is not null)
+            if(cachedData is not null)
+            {
                 faqs = JsonConvert.DeserializeObject<List<Faq>>(cachedData);
+                faqs = faqs.Where(x => !x.IsDeactive).ToList();
+            }
             else
             {
-                faqs = faqDal.GetAll();
-               
+                faqs = faqDal.GetAll().Where(x => !x.IsDeactive).ToList();
+
                 await distributedCache.SetStringAsync(cacheKey, JsonConvert.SerializeObject(faqs), new DistributedCacheEntryOptions
                 {
                     SlidingExpiration = TimeSpan.FromMinutes(15),
@@ -67,6 +71,7 @@ namespace BusinessLayer.Concrete
 
         public void Update(Faq faq)
         {
+            distributedCache.Remove(cacheKey);
             faqDal.Update(faq);
         }
     }

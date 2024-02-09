@@ -51,6 +51,22 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="pagnation my-2">
+                    <ul style="list-style:none;display:flex;justify-content:center;">
+
+                        @for (int i = 1; i <= ViewBag.PageCount; i++)
+                        {
+                            <li class="page-item  @(i == ViewBag.CurrentPage ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-page="@i">@i</a></li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 <!--/ Bordered Table -->

@@ -1,4 +1,5 @@
-﻿using EntityLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,13 +12,15 @@ namespace Timezone.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<AppRole> _roleManager;
+        private readonly IBonusService bonusService;
         public AccountController(UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
-            RoleManager<AppRole> roleManager)
+            RoleManager<AppRole> roleManager,IBonusService bonusService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            this.bonusService = bonusService;   
         }
 
         #region Login
@@ -77,6 +80,9 @@ namespace Timezone.Controllers
                 Email = register.Email,
                 UserName = register.UserName
             };
+
+            await bonusService.CreateBonus(newuser.Id, 10);
+
             IdentityResult identityResult = await _userManager.CreateAsync(newuser, register.Password);
             if(!identityResult.Succeeded)
             {

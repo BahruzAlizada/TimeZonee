@@ -17,9 +17,14 @@ namespace Timezone.Areas.Admin.Controllers
         }
 
         #region Index
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            var vacancies = vacancyService.GetVacancies().OrderByDescending(x=>x.Id).ToList();
+            double take = 15;
+            ViewBag.PageCount = Math.Ceiling(vacancyService.GetVacancies().Count / take);
+            ViewBag.CurrentPage = page;
+
+            var vacancies = vacancyService.GetVacancies().OrderByDescending(x=>x.Id).
+                Skip((page - 1) * (int)take).Take((int)take).ToList();
             return View(vacancies);
         }
         #endregion

@@ -10,34 +10,12 @@
             <div class="card-body">
                 <form method="post" enctype="multipart/form-data">
 
-                    <div style="display:flex;">
-                        @if (Model.ProductImages.Count != 1)
-                        {
-                            foreach (var img in Model.ProductImages)
-                            {
-                                <div style="padding:7px; width:125px;">
-                                    <img style="height:125px;width:125px;" src="~/assets/img/product/@img.Image" />
-                                    <a style="display:block;" class="btn btn-outline-danger del-images">Sil</a>
-                                    <input type="hidden" value="@img.Id">
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            foreach (var img in Model.ProductImages)
-                            {
-                                <div style="padding:7px; width:125px;">
-                                    <img style="height:125px;width:125px;" src="~/assets/img/product/@img.Image" />
-                                </div>
-                            }
-                        }
 
-                    </div>
 
                     <div class="mb-3 form-group">
-                        <label asp-for="Photos" class="form-label">Şəkil</label>
-                        <input asp-for="Photos" class="form-control" />
-                        <span asp-validation-for="Photos" class="text-danger"></span>
+                        <label asp-for="Photo" class="form-label">Şəkil</label>
+                        <input asp-for="Photo" class="form-control" />
+                        <span asp-validation-for="Photo" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3 form-group">
@@ -58,21 +36,6 @@
                         <span asp-validation-for="Quantity" class="text-danger"></span>
                     </div>
 
-                    <div class="mb-3 form-group">
-                        <label asp-for="IsMan" class="form-label">Kişi üçün</label>
-                        <input asp-for="IsMan" value="true" type="radio" />
-
-                        <label asp-for="IsMan" class="form-label">Qadın üçün</label>
-                        <input asp-for="IsMan" value="false" type="radio" />
-                    </div>
-
-                    <div class="mb-3 form-group">
-                        <label asp-for="IsFavorite" class="form-label">Önə çıxart</label>
-                        <input asp-for="IsFavorite" value="true" type="radio" />
-
-                        <label asp-for="IsFavorite" class="form-label">Önə çıxartma </label>
-                        <input asp-for="IsFavorite" value="false" type="radio" />
-                    </div>
 
                     <div class="mb-3 form-group">
                         <label asp-for="IsDelivery" class="form-label">Çatdırılma var</label>

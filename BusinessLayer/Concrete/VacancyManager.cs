@@ -10,12 +10,11 @@ namespace BusinessLayer.Concrete
     public class VacancyManager : IVacancyService
     {
         private readonly IVacancyDal vacancyDal;
-        private readonly IDistributedCache distributedCache;
         public VacancyManager(IVacancyDal vacancyDal,IDistributedCache distributedCache)
         {
             this.vacancyDal = vacancyDal;
-            this.distributedCache = distributedCache;
         }
+
 
         public void Activity(int id)
         {
@@ -29,33 +28,16 @@ namespace BusinessLayer.Concrete
 
         public async Task<List<Vacancy>> GetAll()
         {
-            const string cacheKey = "vacancies";
-            List<Vacancy> vacancies;
+            List<Vacancy> vacancies = vacancyDal.GetAll();
 
-            var cachedData = await distributedCache.GetStringAsync(cacheKey);
-
-            if (cachedData is not null)
-            {
-                vacancies = JsonConvert.DeserializeObject<List<Vacancy>>(cachedData);
-                vacancies = vacancies.Where(x =>!x.IsDeactive).OrderByDescending(x => x.IsDeactive).ToList();
-            }
-            else
-            {
-                vacancies = vacancyDal.GetAll().Where(x => !x.IsDeactive).OrderByDescending(x => x.Id).ToList();
-
-                await distributedCache.SetStringAsync(cacheKey, JsonConvert.SerializeObject(vacancies), new DistributedCacheEntryOptions
-                {
-                    SlidingExpiration = TimeSpan.FromMinutes(15),
-                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(50)
-                });
-            }
+            
 
             return vacancies;
         }
 
         public List<Vacancy> GetVacancies()
         {
-            return vacancyDal.GetAll();
+            return vacancyDal.GetAll(x=>!x.IsDeactive);
         }
 
         public Vacancy GetVacancy(int id)

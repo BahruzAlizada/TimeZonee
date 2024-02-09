@@ -21,7 +21,7 @@ namespace Timezone.ViewComponents
             FooterVM footerVM = new FooterVM
             {
                 SocialMedia = socialMediaService.Get(),
-                Products = productService.GetAll().OrderByDescending(x=>x.Id).Take(4).ToList(),
+                Products = productService.GetAll().OrderByDescending(x=>x.Id).Take(3).ToList(),
                 Bio = bioService.GetBio()
             };
             return View(footerVM);

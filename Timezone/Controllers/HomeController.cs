@@ -10,13 +10,11 @@ namespace Timezone.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> logger;
         private readonly INewsletterService newsletterService;
         private readonly IProductService productService;
 
-        public HomeController(ILogger<HomeController> logger,INewsletterService newsletterService,IProductService productService)
+        public HomeController(INewsletterService newsletterService,IProductService productService)
         {
-            this.logger = logger;
             this.newsletterService = newsletterService;
             this.productService = productService;
         }
@@ -24,8 +22,7 @@ namespace Timezone.Controllers
         #region Index
         public IActionResult Index()
         {
-            logger.LogInformation($"{DateTime.Now} - HomeControllers's Index Method is called");
-            var products = productService.GetProducts().Where(x => !x.IsDeactive).OrderByDescending(x => x.Id).Take(6).ToList();
+            List<Product> products = productService.GetProducts().Where(x => !x.IsDeactive).OrderByDescending(x => x.Id).Take(6).ToList();
             return View(products);
         }
         #endregion

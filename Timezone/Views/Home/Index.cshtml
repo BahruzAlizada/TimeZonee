@@ -30,13 +30,13 @@ ViewBag.Title = "Ana Səhifə";
 		</div>
 		<div class="row">
 
-@foreach(var product in Model.Where(x=>x.IsFavorite))
+@foreach(var product in Model)
 {
 	<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 		<div class="single-popular-items mb-50 text-center">
 			<div class="popular-img">
 							<a asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">
-								<img style="height:373px; width:360px;" src="~/assets/img/product/@product.ProductImages.FirstOrDefault().Image">
+								<img style="height:373px; width:360px;" src="~/assets/img/product/@product.Image">
 							</a>
 				<div class="img-cap">
 					@if (User.Identity.IsAuthenticated)
@@ -82,13 +82,13 @@ ViewBag.Title = "Ana Səhifə";
 		</div>
 		<div class="row">
 
-			@foreach (var product in Model.Where(x => x.IsMan))
+			@foreach (var product in Model)
 			{
 				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 					<div class="single-popular-items mb-50 text-center">
 						<div class="popular-img">
 							<a asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">
-								<img style="height:373px; width:360px;" src="~/assets/img/product/@product.ProductImages.FirstOrDefault().Image">
+								<img style="height:373px; width:360px;" src="~/assets/img/product/@product.Image">
 							</a>
 							<div class="img-cap">
 								@if (User.Identity.IsAuthenticated)
@@ -134,13 +134,13 @@ ViewBag.Title = "Ana Səhifə";
 		</div>
 		<div class="row">
 
-			@foreach (var product in Model.Where(x =>!x.IsMan))
+			@foreach (var product in Model)
 			{
 				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
 					<div class="single-popular-items mb-50 text-center">
 						<div class="popular-img">
 							<a asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">
-								<img style="height:373px; width:360px;" src="~/assets/img/product/@product.ProductImages.FirstOrDefault().Image">
+								<img style="height:373px; width:360px;" src="~/assets/img/product/@product.Image">
 							</a>
 							<div class="img-cap">
 								@if (User.Identity.IsAuthenticated)

@@ -21,12 +21,12 @@ namespace Timezone.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             Bio bio = bioService.GetBio();
+
             if (User.Identity.IsAuthenticated)
             {
                 AppUser user = await userManager.FindByNameAsync(User.Identity.Name);
                 Bonus bonus = await bonusService.GetBonusUser(user.Id);
                 ViewBag.Bonus = bonus.Amount;
-                return View(bio);
             }
             return View(bio);
         }

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity; 
 using Microsoft.AspNetCore.Mvc.Authorization;
 using System;
-using Timezone.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,12 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.ContainerDependencies();
 
-builder.Services.AddSignalR();
-
-
 builder.Services.AddMemoryCache();
 
-builder.Services.AddStackExchangeRedisCache(options => options.Configuration = "localhost:2000");
+//builder.Services.AddStackExchangeRedisCache(options => options.Configuration = "localhost:2000");
 
 builder.Services.AddLogging(log =>
 {
@@ -54,7 +50,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors();
 app.UseStaticFiles();
-app.MapHub<ChatHub>("/chathub");
 app.UseRouting();
 
 app.UseAuthentication();
@@ -65,11 +60,8 @@ app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404");
 app.MapControllerRoute(
      name: "areas",
      pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
-     name: "areas",
-     pattern: "{area:exists}/{controller=Profile}/{action=Index}/{id?}");
-app.MapControllerRoute(
-    
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 

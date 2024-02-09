@@ -16,7 +16,6 @@ namespace Timezone.Areas.Admin.Controllers
     {
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
-        private readonly IProductImageService productImageService;
         private readonly IWebHostEnvironment env;
         public ProductController(IProductService productService, ICategoryService categoryService,IWebHostEnvironment env)
         {
@@ -87,35 +86,7 @@ namespace Timezone.Areas.Admin.Controllers
                 }
                 #endregion
 
-                #region Image
-                if (product.Photos == null)
-                {
-                    ModelState.AddModelError("Photos","Şəkil Seçin");
-                    return View();
-                }
-                List<ProductImage> productImages = new List<ProductImage>();
-                foreach (IFormFile photo in product.Photos)
-                {
-                    if (!photo.IsImage())
-                    {
-                        ModelState.AddModelError("Photos", "Sadəcə Şəkil tipli fayllar");
-                        return View();
-                    }
-                    if (photo.IsOlder256Kb())
-                    {
-                        ModelState.AddModelError("Photos", "Max 256Kb");
-                        return View();
-                    }
-                    string folder = Path.Combine(env.WebRootPath, "assets", "img", "product");
-                    ProductImage image = new ProductImage
-                    {
-                        ProductId = product.Id,
-                        Image = await photo.SaveFileAsync(folder)
-                    };
-                    productImages.Add(image);
-                }
-                product.ProductImages = productImages;
-                #endregion
+                
 
                 product.CategoryId = catId;
 
@@ -132,7 +103,7 @@ namespace Timezone.Areas.Admin.Controllers
             using(var context = new Context())
             {
                 ViewBag.Categories = context.Categories.Where(x =>!x.IsDeactive).ToList();
-                var dbproduct = context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
+                var dbproduct = context.Products.Include(x => x.Gender).FirstOrDefault(x => x.Id == id);
                 if (dbproduct == null)
                     return BadRequest();
 
@@ -148,7 +119,7 @@ namespace Timezone.Areas.Admin.Controllers
             using (var context = new Context())
             {
                 ViewBag.Categories = context.Categories.Where(x => !x.IsDeactive).ToList();
-                var dbproduct = context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
+                var dbproduct = context.Products.Include(x => x.Gender).FirstOrDefault(x => x.Id == id);
                 if (dbproduct == null)
                     return BadRequest();
 
@@ -175,31 +146,31 @@ namespace Timezone.Areas.Admin.Controllers
                 #endregion
 
                 #region Image
-                if (product.Photos != null)
-                {
-                    List<ProductImage> productImages = new List<ProductImage>();
-                    foreach (IFormFile photo in product.Photos)
-                    {
-                        if (!photo.IsImage())
-                        {
-                            ModelState.AddModelError("Photo", "Yanlız şəkil tipli fayllar");
-                            return View();
-                        }
-                        if (photo.IsOlder256Kb())
-                        {
-                            ModelState.AddModelError("Photo", "Max 256Kb");
-                            return View();
-                        }
-                        string folder = Path.Combine(env.WebRootPath, "assets", "img", "product");
+                //if (product.Photos != null)
+                //{
+                //    List<ProductImage> productImages = new List<ProductImage>();
+                //    foreach (IFormFile photo in product.Photos)
+                //    {
+                //        if (!photo.IsImage())
+                //        {
+                //            ModelState.AddModelError("Photo", "Yanlız şəkil tipli fayllar");
+                //            return View();
+                //        }
+                //        if (photo.IsOlder256Kb())
+                //        {
+                //            ModelState.AddModelError("Photo", "Max 256Kb");
+                //            return View();
+                //        }
+                //        string folder = Path.Combine(env.WebRootPath, "assets", "img", "product");
 
-                        ProductImage productImage = new ProductImage
-                        {
-                            Image = await photo.SaveFileAsync(folder)
-                        };
-                        productImages.Add(productImage);
-                    }
-                    dbproduct.ProductImages.AddRange(productImages);
-                }
+                //        ProductImage productImage = new ProductImage
+                //        {
+                //            Image = await photo.SaveFileAsync(folder)
+                //        };
+                //        productImages.Add(productImage);
+                //    }
+                //    dbproduct.ProductImages.AddRange(productImages);
+                //}
                 #endregion
 
                 dbproduct.Name = product.Name;
@@ -207,9 +178,6 @@ namespace Timezone.Areas.Admin.Controllers
                 dbproduct.Quantity = product.Quantity;
                 dbproduct.IsDelivery = product.IsDelivery;
                 dbproduct.IsStock = product.IsStock;
-                dbproduct.IsFavorite=product.IsFavorite;
-                dbproduct.IsMan = product.IsMan;
-                dbproduct.IsChild = product.IsChild;
                 dbproduct.CategoryId = catId;
 
 
@@ -227,21 +195,6 @@ namespace Timezone.Areas.Admin.Controllers
         }
         #endregion
 
-        #region Delete Image
-        public IActionResult DeleteImage(int proImageId)
-        {
-            using var context = new Context();
-
-            var proImage = context.ProductImages.FirstOrDefault(x => x.Id == proImageId);
-            int count = context.ProductImages.Where(x => x.ProductId == proImage.ProductId).Count();
-            if (count == 1)
-                return Ok(".");
-           
-            context.ProductImages.Remove(proImage);
-            context.SaveChanges();
-           
-            return Ok(count-1);
-        }
-        #endregion
+        
     }
 }

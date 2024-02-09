@@ -55,7 +55,6 @@ namespace Timezone.Areas.Admin.Controllers
             Category category = new Category
             {
                 Id = model.Id,
-                Image = "1",
                 Name = model.CategoryName,
                 IsDeactive = false
             };
@@ -114,7 +113,6 @@ namespace Timezone.Areas.Admin.Controllers
             {
                 Id = model.Id,
                 Name = model.CategoryName,
-                Image = "1",
                 IsDeactive = false
             };
 

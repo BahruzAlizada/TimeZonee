@@ -7,7 +7,7 @@
             <div class="single-popular-items mb-50 text-center">
                 <div class="popular-img">
                     <a asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">
-                        <img style="height:373px; width:360px;" src="~/assets/img/product/@product.ProductImages.FirstOrDefault().Image">
+                        <img style="height:373px; width:360px;" src="~/assets/img/product/@product.Image">
                     </a>
                     <div class="img-cap">
                         @if (User.Identity.IsAuthenticated)

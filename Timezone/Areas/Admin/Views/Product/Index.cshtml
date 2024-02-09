@@ -37,32 +37,14 @@
                         <tr>
                             <td>
                                   <img style="object-fit:cover;height:90px;width:180px;"
-                                  src="~/assets/img/product/@item.ProductImages.FirstOrDefault()?.Image">
+                                  src="~/assets/img/product/@item.Image">
                             </td>
                             <td>@item.Name</td>
                             <td>@item.Category.Name</td>
                             <td>@item.Price Azn</td>
                             <td>@item.Quantity</td>
-                            <td>
-                                @if (item.IsMan)
-                                {
-                                    <span style="padding:6px 4px;background-color:blue;color:white;">Kişi</span>
-                                }
-                                else
-                                {
-                                    <span style="padding:6px 4px;background-color:purple;color:white;">Qadın</span>
-                                }
-                            </td>
-                            <td>
-                                @if (item.IsFavorite)
-                                {
-                                    <span style="padding:6px 4px;background-color:green;color:white;">Çıxarılıb</span>
-                                }
-                                else
-                                {
-                                    <span style="padding:6px 4px;background-color:red;color:white;">Çıxarılmayıb</span>
-                                }
-                            </td>
+                           
+                           
                             <td>
                                 @if(item.IsStock)
                                 {

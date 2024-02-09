@@ -11,7 +11,7 @@ using Timezone.ViewsModel;
 
 namespace Timezone.Controllers
 {
-	[Authorize(Roles="User")]
+	[Authorize]
 	public class BasketController : Controller
 	{
 		private readonly IProductService productService;
@@ -34,7 +34,7 @@ namespace Timezone.Controllers
 			{
 				AppUser user = await userManager.FindByNameAsync(User.Identity.Name);
 				List<BasketItem> basketItems = await context.BasketItems.Where(x=>x.AppUserId==user.Id).
-					Include(x=>x.Product).ThenInclude(x=>x.ProductImages).ToListAsync();
+					Include(x=>x.Product).ThenInclude(x=>x.Gender).ToListAsync();
 
 				foreach (var item in basketItems)
 				{
@@ -43,7 +43,7 @@ namespace Timezone.Controllers
 						ProductId=item.Product.Id,
 						Count=item.Count,
 						Price=item.Price,
-						Image = item.Product.ProductImages[0].Image,
+						Image = item.Product.Image,
 						ProductName=item.Product.Name
 					});
 				}

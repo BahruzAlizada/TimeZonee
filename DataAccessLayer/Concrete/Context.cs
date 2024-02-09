@@ -13,16 +13,13 @@ namespace DataAccessLayer.Concrete
         }
 
         public DbSet<Slider> Sliders { get;set; }
-        public DbSet<Galery> Galeries { get;set; }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Newsteller> Newstellers { get;set; }
         public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Blog> Blogs { get; set; }
-        public DbSet<Comment> Comments { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Gender> Genders { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Bonus> Bonuses { get; set; }
         public DbSet<Faq> Faqs { get; set; }

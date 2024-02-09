@@ -10,6 +10,7 @@
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Role { get; set; }
+        public double Amount { get; set; }
         public bool IsDeactive { get; set; }
     }
 }

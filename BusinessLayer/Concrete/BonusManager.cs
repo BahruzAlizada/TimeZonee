@@ -12,6 +12,17 @@ namespace BusinessLayer.Concrete
         {
             this.bonusDal = bonusDal;
         }
+
+        public async Task CreateBonus(int userID, double amount)
+        {
+            await bonusDal.CreateBonus(userID, amount);
+        }
+
+        public Task<double> GetBonusAmountUser(int userId)
+        {
+            return bonusDal.GetBonusAmountUser(userId);
+        }
+
         public async Task<Bonus> GetBonusUser(int userId)
         {
             return await bonusDal.GetBonusUser(userId);

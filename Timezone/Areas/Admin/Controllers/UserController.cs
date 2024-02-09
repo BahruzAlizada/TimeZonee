@@ -1,4 +1,5 @@
-﻿using EntityLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,12 @@ namespace Timezone.Areas.Admin.Controllers
     {
         private readonly UserManager<AppUser> userManager;
         private readonly RoleManager<AppRole> roleManager;
-        public UserController(UserManager<AppUser> userManager,RoleManager<AppRole> roleManager)
+        private readonly IBonusService bonusService;
+        public UserController(UserManager<AppUser> userManager,RoleManager<AppRole> roleManager,IBonusService bonusService)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
+            this.bonusService = bonusService;
         }
 
         #region Index
@@ -24,6 +27,8 @@ namespace Timezone.Areas.Admin.Controllers
         {
             List<AppUser> users = await userManager.Users.ToListAsync();
             List<UserListVM> usersVM = new List<UserListVM>();
+
+            
 
             foreach (var item in users)
             {
@@ -37,7 +42,9 @@ namespace Timezone.Areas.Admin.Controllers
                     PhoneNumber = item.PhoneNumber,
                     Image = item.Image,
                     Role = (await userManager.GetRolesAsync(item))[0],
+                    Amount = await bonusService.GetBonusAmountUser(item.Id),
                     IsDeactive=item.IsDeactive
+                    
                 };
                 usersVM.Add(userList);
             }

@@ -16,9 +16,14 @@ namespace Timezone.Areas.Admin.Controllers
         }
 
         #region Index
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         {
-            List<Contact> contacts = contactService.GetAll().OrderByDescending(x=>x.Id).ToList();
+            double take = 15;
+            ViewBag.PageCount = Math.Ceiling(contactService.GetAll().Count / take);
+            ViewBag.CurrentPage = page;
+
+            List<Contact> contacts = contactService.GetAll().OrderByDescending(x => x.Id).
+                Skip((page - 1) * (int)take).Take((int)take).ToList();
             return View(contacts);
         }
         #endregion

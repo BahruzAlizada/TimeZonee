@@ -8,13 +8,12 @@
                 <div class="footer-logo">
                     <a asp-controller="Home" asp-action="Index"><img src="~/assets/img/logo/@Model.Bio.FooterImage" alt=""></a>
                 </div>
-                <div class="footer-tittle">
+                <div class="footer-tittle" style="margin-top:-50px;">
                     <div class="footer-pera">
                         <p>@Html.Raw(Model.Bio.FooterDescription)</p>
-                        <div class="footer-social">
+                        <div class="footer-social" style="margin-top:-25px;">
                             <a href="@Model.SocialMedia.TviterLink"><i class="fab fa-twitter"></i></a>
-@*                            <a href="@Model."><i class="fab fa-facebook-f"></i></a>
-*@                            <a href="@Model.SocialMedia.InstagramLink"><i class="fab fa-behance"></i></a>
+                            <a href="@Model.SocialMedia.InstagramLink"><i class="fab fa-behance"></i></a>
                             <a href="@Model.SocialMedia.YoutubeLink"><i class="fas fa-globe"></i></a>
                         </div>
                     </div>
@@ -33,7 +32,6 @@
                 <ul>
                     <li><a asp-controller="About" asp-action="Index">Haqqımızda</a></li>
                     <li><a asp-controller="Product" asp-action="Index">Məhsullar</a></li>
-                    <li><a asp-controller="Blog" asp-action="Index">Bloqlar</a></li>
                     <li><a asp-controller="Contact" asp-action="Index">Əlaqə</a></li>
                 </ul>
             </div>
@@ -58,7 +56,6 @@
                 <h4>Dəstək</h4>
                 <ul>
                     <li><a asp-controller="Faq" asp-action="Index">Ən çox verilən Suallar</a></li>
-                    <li><a href="~/#">Məhsulunu bizə sat</a></li>
                     <li><a asp-controller="Vacancy" asp-action="Index">Vakansiyalar</a></li>
                 </ul>
             </div>

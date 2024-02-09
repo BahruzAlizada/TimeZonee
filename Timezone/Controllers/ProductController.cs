@@ -23,27 +23,13 @@ namespace Timezone.Controllers
             logger.LogInformation($"{DateTime.Now} - ProductController's index method is called");
 
             using var context = new Context();
-            IQueryable<Product> productss = context.Products.Where(x=>!x.IsDeactive).Include(x=>x.Category).Include(x=>x.ProductImages).AsQueryable();
+            IQueryable<Product> productss = context.Products.Where(x=>!x.IsDeactive).Include(x=>x.Category).Include(x=>x.Gender).AsQueryable();
             if (!string.IsNullOrEmpty(search))
             {
                 productss = productss.Where(x => x.Name.ToLower().Contains(search.ToLower()));
             }
 
-            switch (sort)
-            {
-                case 2:
-                    productss.Where(x => x.IsMan);
-                    break;
-                case 3:
-                    productss.Where(x => !x.IsMan);
-                    break;
-                case 4:
-                    productss.OrderBy(x => x.Price);
-                    break;
-                case 5:
-                    productss.OrderByDescending(x => x.Price);
-                    break;
-            }
+
             int take = 18;
             ViewBag.ProductsCount = context.Products.Where(x =>!x.IsDeactive).ToList();
             ViewBag.Take = take;
@@ -70,7 +56,7 @@ namespace Timezone.Controllers
             if (skipCount >= ProductsCount)
                 return Content(".");
 
-            List<Product> products = context.Products.Include(x=>x.Category).Include(x=>x.ProductImages).Where(x=>!x.IsDeactive).
+            List<Product> products = context.Products.Include(x=>x.Category).Include(x=>x.Gender).Where(x=>!x.IsDeactive).
                 OrderByDescending(x=>x.Id).Skip(skipCount).Take(18).ToList();
             return PartialView("_ProductsPartialView",products);
         }
